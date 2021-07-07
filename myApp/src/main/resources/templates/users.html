@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>List OF Users</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Users List</h1></div>
+    <div>
+        <table class="table table-bordered">
+            <thread class="thead-dark">
+                <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>email</th>
+                <th>password</th>
+                <th>create time</th>
+                </tr>
+            </thread>
+            <tbody>
+            <th:block th:each="userDto : ${userDtos}">
+                <tr>
+                    <td>[[${userDto.userId}]]</td>
+                    <td>[[${userDto.userName}]]</td>
+                    <td>[[${userDto.userEmail}]]</td>
+                    <td>[[${userDto.password}]]</td>
+                    <td>[[${userDto.createTime}]]</td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

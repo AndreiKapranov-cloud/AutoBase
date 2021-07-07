@@ -1,0 +1,22 @@
+<form action="#"
+      th:action="@{/update/{id}(id=${userDto.userId})}"
+      th:object="${userDto}"
+      method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <label for="userId">Id</label>
+    <input type="text" th:field="*{userDto.userId}" id="userId" placeholder="UserId">
+    <span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+    <label for="userName">Name</label>
+    <input type="text" th:field="*{userDto.userName}" id="userName" placeholder="UserName">
+    <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+    <label for="userEmail">Email</label>
+    <input type="text" th:field="*{userDto.userEmail}" id="userEmail" placeholder="UserEmail">
+    <span th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}"></span>
+    <label for="password">Password</label>
+    <input type="text" th:field="*{userDto.password}" id="password" placeholder="password">
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    <label for="createTime">CreateTime</label>
+    <input type="text" th:field="*{userDto.createTime}" id="createTime" placeholder="createTime">
+    <span th:if="${#fields.hasErrors('createTime')}" th:errors="*{createTime}"></span>
+
+    <input type="submit" value="Update User">
+</form>

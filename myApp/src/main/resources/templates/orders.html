@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>List OF Orders</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Orders List</h1></div>
+    <div>
+        <table class="table table-bordered">
+            <thread class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Term Of Delivery</th>
+                    <th>Weight</th>
+                    <th>Delivery Address</th>
+                </tr>
+            </thread>
+            <tbody>
+            <th:block th:each="orderDto : ${orderDtos}">
+                <tr>
+                    <td>[[${orderDto.orderId}]]</td>
+                    <td>[[${orderDto.termOfDelivery}]]</td>
+                    <td>[[${orderDto.weight}]]</td>
+                    <td>[[${orderDto.deliveryAddress}]]</td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

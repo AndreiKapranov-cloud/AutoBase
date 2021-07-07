@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Autobase Homepage</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>Welcome to Autobase</h1></div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/users}">List Of Users</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/user/new}">Add User</a>
+    </div>
+    <div>
+        <a>----------------------------------------------</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/autos}">List Of Autos</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/auto/new}">Add Auto</a>
+    </div>
+   <div>
+       <a>--------------------------------------------------</a>
+   </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/drivers}">List Of Drivers</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/driver/new}">Add Driver</a>
+    </div>
+    <div>
+        <a>----------------------------------------------</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/orders}">List Of Orders</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/order/new}">Add Order</a>
+    </div>
+    <div>
+        <a>----------------------------------------------</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/trips}">List Of Trips</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/trip/new}">Add Trip</a>
+    </div>
+    <div>
+        <a>----------------------------------------------</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/user-roles}">List Of User-roles</a>
+    </div>
+    <div class="p-2">
+        <a class="h2" th:href="@{/add-userRole}">Add User-role</a>
+    </div>
+</div>
+</body>
+</html>

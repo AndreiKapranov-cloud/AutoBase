@@ -1,0 +1,31 @@
+<div th:switch="${userDtos}"  xmlns:th="http://www.w3.org/1999/xhtml">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>CreateTime</th>
+                <th>UserRole</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="userDto : ${userDtos}">
+                <td th:text="${userDto.userName}"></td>
+                <td th:text="${userDto.userEmail}"></td>
+                <td th:text="${userDto.password}"></td>
+                <td th:text="${userDto.createTime}"></td>
+                <td th:text="${userDto.userRole}"></td>
+                <td><a th:href="@{/edit/{id}(id=${userDto.userId})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${userDto.userId})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/signup">Add a new user</a></p>
+</div>
