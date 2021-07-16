@@ -11,7 +11,7 @@ import java.util.List;
 @Table
 public class Auto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auto_id")
     private Long autoId;
     @Column(nullable = false)
@@ -23,8 +23,8 @@ public class Auto {
     @Column(name = "max_volume_m3",nullable = false)
     private int maxVolumeM3;
     @Column(name = "technical_inspection",nullable = false)
-    private String technicalInspection;
-    @OneToMany(mappedBy = "auto", cascade = CascadeType.ALL)
-    private List<Trip> trips;
+    private Boolean technicalInspection;
+    @OneToOne(mappedBy = "auto")
+    private UserRole userRole;
 
 }

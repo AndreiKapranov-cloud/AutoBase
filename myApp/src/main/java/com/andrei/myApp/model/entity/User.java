@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -22,13 +23,18 @@ public class User {
     private String userEmail;
     @Column(nullable = false)
     private String password;
-    @Column(name = "create_time", nullable = false)
-    private String createTime;
-
-     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
-     private UserRole userRole;
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "autobase_id")
-    private AutoBase autoBase;
+    @Column(name = "create_date", nullable = false)
+    private Date createDate;
+    @Column(name = "user_second_name")
+    private String secondName;
+    @Column (name = "ready")
+    private Boolean ready;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
 }
+

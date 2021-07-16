@@ -12,15 +12,14 @@ import java.util.List;
 public class AutoBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "autobase_id",nullable = false)
+    @Column(name = "auto_base_id",nullable = false)
     private Long autoBaseId;
     @Column(nullable = false)
     private String address;
     @Column(name = "name_of_organization",nullable = false)
     private String nameOfOrganization;
-    @OneToMany(mappedBy = "autoBase", cascade = CascadeType.ALL)
-    private List<User> users;
-    @OneToMany(mappedBy = "autoBase", cascade = CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "autoBase", cascade = CascadeType.ALL)
     private List<Trip> trips;
 
 

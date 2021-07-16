@@ -14,7 +14,5 @@ public class AutoBaseDto {
     private String address;
     private String nameOfOrganization;
     private List<TripDto> trips;
-    private List<UserDto>users;
-
 
 }

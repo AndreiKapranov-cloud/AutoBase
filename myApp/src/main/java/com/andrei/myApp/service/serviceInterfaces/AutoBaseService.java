@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface AutoBaseService {
 
-    List<AutoBaseDto> getAll();
+    List<AutoBase> getAll();
 
-    AutoBaseDto getAutoBaseByNameOfOrganization(String nameOfOrganization);
+    AutoBase getAutoBaseByNameOfOrganization(String nameOfOrganization);
 
-    AutoBaseDto getAutoBaseByAutoBaseId(Long autoBaseId);
+    AutoBase getAutoBaseByAutoBaseId(Long autoBaseId);
+    AutoBase save(AutoBase autoBase);
 }

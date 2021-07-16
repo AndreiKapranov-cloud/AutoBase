@@ -6,7 +6,8 @@ import com.andrei.myApp.model.entity.UserRole;
 import java.util.List;
 
 public interface UserRoleService {
-   List<UserRoleDto> getAll();
-   UserRoleDto getUserRoleByRole(String role);
-   UserRoleDto getUserRoleByRoleId(Long roleId);
+    List<UserRole> getAll();
+    UserRole save(UserRole userRole);
+    UserRole getUserRoleByUserId(Long userId);
+    UserRole getUserRoleByAutoTechnicalInspectionTrue();
 }

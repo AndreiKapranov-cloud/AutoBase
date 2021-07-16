@@ -6,18 +6,18 @@ import com.andrei.myApp.model.entity.Auto;
 import java.util.List;
 
 public interface AutoService {
-    List<AutoDto> getAll();
-    AutoDto getAutoByAutoId(Long autoId);
+    List<Auto> getAll();
+    Auto getAutoByAutoId(Long autoId);
 
-    AutoDto getAutoByNumber(String number);
+    Auto getAutoByNumber(String number);
 
-    List<AutoDto> getAutosByCarryingCapacityIsGreaterThan(int carryingCapacity);
+    List<Auto> getAutosByCarryingCapacityIsGreaterThan(int carryingCapacity);
 
-    List<AutoDto> getAutosByMaxWeightWithCargoKgIsLessThan(int maxWeightWithCargoKg);
+    List<Auto> getAutosByMaxWeightWithCargoKgIsLessThan(int maxWeightWithCargoKg);
 
-    List<AutoDto>getAutosByMaxVolumeM3After(int maxVolumeM3);
+    List<Auto>getAutosByMaxVolumeM3After(int maxVolumeM3);
 
-    List<AutoDto>getAutosByTechnicalInspection(String technicalInspection);
+    List<Auto>getAutosByTechnicalInspection(String technicalInspection);
 
-    Auto save(AutoDto autoDto);
+    Auto save(Auto auto);
 }

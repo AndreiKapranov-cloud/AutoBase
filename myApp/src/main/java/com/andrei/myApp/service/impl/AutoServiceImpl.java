@@ -1,100 +1,66 @@
 package com.andrei.myApp.service.impl;
 
-import com.andrei.myApp.dto.AutoDto;
-import com.andrei.myApp.mapper.AutoAutoDtoMapper;
 import com.andrei.myApp.model.dao.AutoDao;
 import com.andrei.myApp.model.entity.Auto;
 import com.andrei.myApp.service.serviceInterfaces.AutoService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AutoServiceImpl implements AutoService{
+public class AutoServiceImpl implements AutoService {
+    private final AutoDao dao;
 
-  private final AutoDao dao;
-    private final AutoAutoDtoMapper mapper;
-    public AutoServiceImpl(AutoDao dao, AutoAutoDtoMapper mapper) {
+    public AutoServiceImpl(AutoDao dao) {
         this.dao = dao;
-        this.mapper = mapper;
+
     }
 
     @Override
-    public List<AutoDto> getAll() {
+    public List<Auto> getAll() {
         List<Auto> autos = dao.findAll();
-        List<AutoDto> autoDtos = new ArrayList<>();
-        autos.forEach(auto -> {
-            AutoDto autoDto = mapper.autoToAutoDto(auto);
-            autoDtos.add(autoDto);
-        });
-        return autoDtos;
+        return autos;
     }
 
     @Override
-    public AutoDto getAutoByNumber(String number) {
+    public Auto getAutoByNumber(String number) {
         Auto auto = dao.getAutoByNumber(number);
-        AutoDto autoDto = new AutoDto();
-       autoDto = mapper.autoToAutoDto(auto);
-        return autoDto;
+        return auto;
     }
     @Override
-    public AutoDto getAutoByAutoId(Long autoId) {
+    public Auto getAutoByAutoId(Long autoId) {
         Auto auto = dao.getAutoByAutoId(autoId);
-        AutoDto autoDto = new AutoDto();
-        autoDto = mapper.autoToAutoDto(auto);
-        return autoDto;
+        return auto;
     }
     @Override
-    public List<AutoDto> getAutosByCarryingCapacityIsGreaterThan(int carryingCapacity) {
+    public List<Auto> getAutosByCarryingCapacityIsGreaterThan(int carryingCapacity) {
         List<Auto> autos = dao.getAutosByCarryingCapacityIsGreaterThan(carryingCapacity);
-        List<AutoDto> autoDtos = new ArrayList<>();
-        autos.forEach(auto -> {
-            AutoDto autoDto = mapper.autoToAutoDto(auto);
-            autoDtos.add(autoDto);
-        });
-        return autoDtos;
+        return autos;
 
     }
 
 
     @Override
-    public List<AutoDto> getAutosByMaxWeightWithCargoKgIsLessThan(int maxWeightWithCargoKg) {
+    public List<Auto> getAutosByMaxWeightWithCargoKgIsLessThan(int maxWeightWithCargoKg) {
         List<Auto> autos = dao.getAutosByMaxWeightWithCargoKgIsLessThan(maxWeightWithCargoKg);
-        List<AutoDto> autoDtos = new ArrayList<>();
-        autos.forEach(auto -> {
-            AutoDto autoDto = mapper.autoToAutoDto(auto);
-            autoDtos.add(autoDto);
-        });
-        return autoDtos;
+        return autos;
 
     }
 
     @Override
-    public List<AutoDto> getAutosByMaxVolumeM3After(int maxVolumeM3) {
+    public List<Auto> getAutosByMaxVolumeM3After(int maxVolumeM3) {
         List<Auto> autos = dao.getAutosByMaxVolumeM3After(maxVolumeM3);
-        List<AutoDto> autoDtos = new ArrayList<>();
-        autos.forEach(auto -> {
-            AutoDto autoDto = mapper.autoToAutoDto(auto);
-            autoDtos.add(autoDto);
-        });
-        return autoDtos;
+        return autos;
     }
 
     @Override
-    public List<AutoDto> getAutosByTechnicalInspection(String technicalInspection) {
+    public List<Auto> getAutosByTechnicalInspection(String technicalInspection) {
         List<Auto> autos = dao.getAutosByTechnicalInspection(technicalInspection);
-        List<AutoDto> autoDtos = new ArrayList<>();
-        autos.forEach(auto -> {
-            AutoDto autoDto = mapper.autoToAutoDto(auto);
-            autoDtos.add(autoDto);
-        });
-        return autoDtos;
+        return autos;
     }
 
     @Override
-    public Auto save(AutoDto autoDto) {
-       Auto auto =mapper.autoDtoToAuto(autoDto);
+    public Auto save(Auto auto) {
         return dao.save(auto);
     }
 }

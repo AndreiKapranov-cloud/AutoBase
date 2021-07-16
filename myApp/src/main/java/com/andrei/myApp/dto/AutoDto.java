@@ -1,6 +1,7 @@
 package com.andrei.myApp.dto;
 
 import com.andrei.myApp.model.entity.Trip;
+import com.andrei.myApp.model.entity.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ public class AutoDto {
     private int carryingCapacity;
     private int maxWeightWithCargoKg;
     private int maxVolumeM3;
-    private String technicalInspection;
-    private List<TripDto> tripDtos;
+    private Boolean technicalInspection;
+    private UserRoleDto userRole;
+
 }

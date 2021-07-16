@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta charset="ISO-8859-1">
+    <title>List OF Drivers</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="container text-center">
+    <div><h1>UserRoles List</h1></div>
+    <style>
+        .cout {
+            color: navajowhite;
+        }
+
+        .cin {
+            color: sandybrown;
+        }
+
+        .c {
+            background-color: lemonchiffon;
+        }
+
+        .cc {
+            background-color: lightskyblue
+        }
+
+    </style>
+    <div>
+        <table class="table table-bordered">
+            <thread>
+                <tr>
+                    <th><span class="cc">Role Id</span>
+                        <span> User Id</span></th>
+                    <th><span class="cc">User Role</span>
+                        <span>  User Name</span>
+                    </th>
+                    <th>User Email</th>
+                    <th>Drivers Auto</th>
+                </tr>
+            </thread>
+            <tbody>
+            <th:block th:each="role : ${roles}">
+                <tr>
+                    <td><span class="cc"> [[${role.roleId}]]</span></td>
+                    <td><span class="cc">[[${role.role}]]</span></td>
+                    <td>
+                <tr th:each="user : ${role.users}">
+                    <td><span th:text="${user.userId}"></span></td>
+                    <td><span th:text="${user.userName}"></span></td>
+                    <td><span th:text="${user.userEmail}"></span></td>
+
+                </tr>
+                </td>
+                <td>
+                    <tr th :each="userRole : ${trip.userRoles}">
+                        <td><span th :text="${userRole.auto}"></span></td>
+                    </tr>
+                </td>
+
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

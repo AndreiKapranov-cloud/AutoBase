@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <meta charset="ISO-8859-1">
     <title>Autobase Homepage</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
@@ -9,46 +10,46 @@
 <div class="container text-center">
     <div><h1>Welcome to Autobase</h1></div>
     <div class="p-2">
-        <a class="h2" th:href="@{/users}">List Of Users</a>
+        <a class="h2" th:href="@{/userDtos}">List Of Users</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/user/new}">Add User</a>
+        <a class="h2" th:href="@{/userDto/new}">Add User</a>
     </div>
     <div>
         <a>----------------------------------------------</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/autos}">List Of Autos</a>
+        <a class="h2" th:href="@{/autoDtos}">List Of Autos</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/auto/new}">Add Auto</a>
+        <a class="h2" th:href="@{/autoDto/new}">Add Auto</a>
     </div>
    <div>
        <a>--------------------------------------------------</a>
    </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/drivers}">List Of Drivers</a>
+        <a class="h2" th:href="@{/roleDtos}">List Of UserRoles</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/driver/new}">Add Driver</a>
+        <a class="h2" th:href="@{/driverDto/new}">Add Driver</a>
     </div>
     <div>
         <a>----------------------------------------------</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/orders}">List Of Orders</a>
+        <a class="h2" th:href="@{/orderDtos}">List Of Orders</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/order/new}">Add Order</a>
+        <a class="h2" th:href="@{/orderDto/new}">Add Order</a>
     </div>
     <div>
         <a>----------------------------------------------</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/trips}">List Of Trips</a>
+        <a class="h2" th:href="@{/tripDtos}">List Of Trips</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/trip/new}">Add Trip</a>
+        <a class="h2" th:href="@{/tripDto/new}">Add Trip</a>
     </div>
     <div>
         <a>----------------------------------------------</a>
