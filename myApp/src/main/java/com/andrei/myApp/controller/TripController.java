@@ -32,7 +32,7 @@ public class TripController {
     public String showTripList(Model model) {
         List<Trip> trips = tripService.getAll();
         model.addAttribute("trips", trips);
-        return "tripDtos";
+        return "trips";
     }
 
 

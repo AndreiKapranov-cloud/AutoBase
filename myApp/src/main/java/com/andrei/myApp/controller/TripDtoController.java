@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -36,8 +37,10 @@ public class TripDtoController {
 
 
     @GetMapping("/tripDto/new")
-    public String showAddTripForm(Model model) {
-
+    public String showAddTripForm( @RequestParam(value = "TripId", required = false) Long tripId,
+                                   @RequestParam(value = "autoBase", required = false) AutoBaseDto autoBase,
+                                   @RequestParam(value = "orders", required = false) OrdersDto orders,
+                                   Model model) {
         List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
         List<UserDto> userDtos = userDtoService.getAll();
         List<AutoDto> autoDtos = autoDtoService.getAll();
