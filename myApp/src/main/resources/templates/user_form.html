@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
 </head>
 <body>
+
 <div class="container text-center">
     <div th:if="${user.userId==null}"><h1>Create New User</h1></div>
     <div th:unless="${user.userId==null}"><h1>Edit User</h1></div>
@@ -77,6 +78,9 @@
         </div>
     </form>
 </div>
+<footer>
+    Copyright Andrei Kapranov
+</footer></body>
 </body>
 </html>
 

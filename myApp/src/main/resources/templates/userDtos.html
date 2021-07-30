@@ -7,9 +7,90 @@
     <title>List OF Users</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        /* The hero image */
+        .hero-image {
+            /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://s1.1zoom.ru/big0/629/Sunrises_and_sunsets_Trucks_Retro_Grass_Old_Side_605279_1280x844.jpg");
+
+            /* Set a specific height */
+            height: 50%;
+
+            /* Position and center the image to scale nicely on all screens */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Place text in the middle of the image */
+        .hero-text {
+            text-align: right;
+            position: absolute;
+            top: 50%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+
+        button {
+            border-radius: 4px;
+            background-color: #5ca1e1;
+            border: none;
+            color: #fff;
+            text-align: center;
+            font-size: 13px;
+            padding: 16px;
+            width: 170px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 1px;
+            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+        }
+
+        button {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        button:after {
+            content: '>>';
+            position: absolute;
+            opacity: 0;
+            top: 14px;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            padding-right: 24px;
+            padding-left: 8px;
+        }
+
+        button:hover:after {
+            opacity: 1;
+            right: 10px;
+        }
+        A {
+            text-decoration: none;
+        }
+    </style>
 
 </head>
 <body>
+<div class="hero-image">
+    <div class="hero-text">
+        <p> <a style="color:rgba(236,240,242,0.86);" >&#9993; autoBase@mail.com &#9743; +(375)33-6-23-23-57</a></p>
+
+        <h1><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p></h1>
+    </div>
+</div>
 <div class="container text-center">
     <div><h1>Users List</h1></div>
     <div>
@@ -22,7 +103,7 @@
                     <th>password</th>
                     <th>create time</th>
                     <th>ready</th>
-
+                    <th>role</th>
                 </tr>
             </thread>
             <tbody>
@@ -34,12 +115,21 @@
                     <td>[[${userDto.password}]]</td>
                     <td>[[${userDto.createDate}]]</td>
                     <td>[[${userDto.ready}]]</td>
-                    <td><a th:href="@{'/userDtos/edit/' +${userDto.userId}}">Edit</a></td>
+                    <td>[[${(userDto.role).getRolEnum}]]</td>
+                    <td><a th:href="@{'/userDtos/edit/' +${userDto.userId}}">
+                        <button
+                        >Edit
+                        </button>
+                    </a></td>
                 </tr>
             </th:block>
             </tbody>
         </table>
     </div>
 </div>
+<footer>
+    Copyright Andrei Kapranov
+</footer></body>
+
 </body>
 </html>

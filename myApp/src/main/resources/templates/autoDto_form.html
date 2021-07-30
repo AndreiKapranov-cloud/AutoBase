@@ -5,12 +5,53 @@
     <meta charset="ISO-8859-1">
     <title>Create New Auto</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
+    <style>  body, html {
+        height: 100%;
+    }
+
+    /* The hero image */
+    .hero-image {
+        /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://s1.1zoom.ru/big0/629/Sunrises_and_sunsets_Trucks_Retro_Grass_Old_Side_605279_1280x844.jpg");
+
+        /* Set a specific height */
+        height: 50%;
+
+        /* Position and center the image to scale nicely on all screens */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    /* Place text in the middle of the image */
+    .hero-text {
+        text-align: right;
+        position: absolute;
+        top: 50%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+    A {
+        text-decoration: none;
+    }
+    </style>
 </head>
 <body>
+<div class="hero-image">
+    <div class="hero-text">
+        <p> <a style="color:rgba(236,240,242,0.86);" >&#9993; autoBase@mail.com &#9743; +(375)33-6-23-23-57</a></p>
+
+        <h1><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p></h1>
+    </div>
+</div>
 <div class="container text-center">
-    <div><h1>Create New Auto</h1></div>
+    <div th:if="${autoDto.autoId==null}"><h1>Create New Auto</h1></div>
+    <div th:unless="${autoDto.autoId==null}"><h1>Edit Auto</h1></div>
     <form th:action="@{/autoDto/save}" th:object="${autoDto}" method="post"
           style="max-width: 600px;margin: 0 auto;">
+        <input type="hidden" th:field="*{autoId}"/>
         <div class="m-3">
             <div class="form-group row">
                 <label class="col-form-label col-sm-4">Auto Number:</label>
@@ -52,12 +93,25 @@
                     </label>
                 </div>
             </div>
-
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Driver:</label>
+                <div class="col-sm-8">
+                    <select th:field="*{driver}" class="form-control" required>
+                        <th:block th:each="a : ${drivers}">
+                            <option th:text="${a.secondName}" th:value="${a.userId}"></option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
             <div class="text-center p-3">
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
     </form>
 </div>
+<footer>
+    Copyright Andrei Kapranov
+</footer></body>
+
 </body>
 </html>

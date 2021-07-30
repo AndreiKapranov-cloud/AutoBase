@@ -1,65 +1,156 @@
 <!DOCTYPE html>
 <html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <meta charset="ISO-8859-1">
     <title>Autobase Homepage</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
+    <style>
+        body {
+            background-image: url("https://s3.us-east-1.amazonaws.com/nd.images/uploads/Blog-Post-Lead-Image-for-Feb-11-Blog.png");
+        }
+
+        p {
+            animation-duration: 3s;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+
+            75% {
+                font-size: 300%;
+                margin-left: 25%;
+                width: 150%;
+            }
+
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+
+        .polling_message {
+            color: white;
+            float: left;
+            margin-right: 2%;
+        }
+
+        .view_port {
+            background-color: black;
+            height: 25px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .cylon_eye {
+            background-color: red;
+            background-image: linear-gradient(to right,
+            rgba(0, 0, 0, .9) 25%,
+            rgba(0, 0, 0, .1) 50%,
+            rgba(0, 0, 0, .9) 75%);
+            color: white;
+            height: 100%;
+            width: 20%;
+
+            -webkit-animation: 4s linear 0s infinite alternate move_eye;
+            animation: 4s linear 0s infinite alternate move_eye;
+        }
+
+        @-webkit-keyframes move_eye {
+            from {
+                margin-left: -20%;
+            }
+            to {
+                margin-left: 100%;
+            }
+        }
+
+        @keyframes move_eye {
+            from {
+                margin-left: -20%;
+            }
+            to {
+                margin-left: 100%;
+            }
+        }
+    </style>
+    <script>
+        function reloadThePage(){
+            window.location.reload();
+        }
+    </script>
 </head>
 <body>
+
 <div class="container text-center">
-    <div><h1>Welcome to Autobase</h1></div>
+    <p class="h2" th:inline="text" style="color:red;">Nice to meet you,[[${#httpServletRequest.remoteUser}]]</p>
+    <div>
+        <a style="color:red;"href="javascript:reloadThePage() ;" >try&#9760me</a>
+    </div>
+    <div class="view_port">
+        <div class="polling_message">
+            AutoBase
+        </div>
+        <div class="cylon_eye"></div>
+    </div>
+    <audio autoplay="true" loop="true" >
+        <source src="audio/music.ogg" type='audio/ogg; codecs=vorbis'>
+        <source src="https://bestringtoness.com/sounds/mp3/silent-hill-siren.mp3" type="audio/mpeg">
+        ??? audio ?? ?????????????? ????? ?????????. <a href="audio/music.mp3">???????? ??????</a>.
+    </audio>
+
+    <form name="logoutForm" th:hidden="true" method="post" th:action="@{/logout}">
+        <input type="submit" value="Logout"/>
+    </form>
+    <a href="javascript: logoutForm.submit();" style="color:red;">Sign Out</a>
     <div class="p-2">
-        <a class="h2" th:href="@{/users}">List Of Users</a>
+        <a style="color:red;" class="h2" th:href="@{/userDtos}">The Last Of Users</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/user/new}">Add User</a>
+        <a style="color:red;" class="h2" th:href="@{/userDto/new}">Add User</a>
+    </div>
+    <div class="p-2">
+        <a style="color:red;" class="h2" th:href="@{/autoDtos}">List Of Autos</a>
+    </div>
+    <div class="p-2">
+        <a style="color:red;" class="h2" th:href="@{/autoDto/new}">Add Auto</a>
     </div>
     <div>
-        <a>----------------------------------------------</a>
+        <a> </a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/autos}">List Of Autos</a>
+        <a style="color:red;" class="h2" th:href="@{/orderDtos}">List Of Orders</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/auto/new}">Add Auto</a>
-    </div>
-   <div>
-       <a>--------------------------------------------------</a>
-   </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/roles}">List Of UserRoles</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/driver/new}">Add Driver</a>
+        <a style="color:red;" class="h2" th:href="@{/orderDto/new}">Add Order</a>
     </div>
     <div>
-        <a>----------------------------------------------</a>
+        <a> </a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/orders}">List Of Orders</a>
+        <a style="color:red;" class="h2" th:href="@{/tripDtos}">List Of Trips</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/order/new}">Add Order</a>
+        <a style="color:red;" class="h2" th:href="@{/requestTripDto/new}">Add Trip</a>
     </div>
     <div>
-        <a>----------------------------------------------</a>
+        <a> </a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/tripDto}">List Of Trips</a>
+        <a style="color:red;" class="h2" th:href="@{/autoBaseDtos}">List Of AutoBases</a>
     </div>
     <div class="p-2">
-        <a class="h2" th:href="@{/tripDto/new}">Add Trip</a>
-    </div>
-    <div>
-        <a>----------------------------------------------</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/user-roles}">List Of User-roles</a>
-    </div>
-    <div class="p-2">
-        <a class="h2" th:href="@{/add-userRole}">Add User-role</a>
+        <a style="color:red;" class="h2" th:href="@{/autoBaseDto/new}">Add AutoBase</a>
     </div>
 </div>
+<footer>
+    Copyright Andrei Kapranov
+</footer></body>
+
 </body>
 </html>
