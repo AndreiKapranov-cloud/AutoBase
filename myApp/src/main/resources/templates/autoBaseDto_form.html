@@ -6,80 +6,140 @@
     <meta charset="ISO-8859-1">
     <title>Create New Order</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
-    <style>  body, html {
-        height: 100%;
-    }
+    <style>
+        a {
+            font-size: 70%;
+        }
 
-    /* The hero image */
-    .hero-image {
-        /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://s1.1zoom.ru/big0/629/Sunrises_and_sunsets_Trucks_Retro_Grass_Old_Side_605279_1280x844.jpg");
+        body, html {
+            height: 100%;
+        }
 
-        /* Set a specific height */
-        height: 50%;
+        /* The hero image */
+        .hero-image {
+            /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://s1.1zoom.ru/big0/629/Sunrises_and_sunsets_Trucks_Retro_Grass_Old_Side_605279_1280x844.jpg");
 
-        /* Position and center the image to scale nicely on all screens */
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-    }
+            /* Set a specific height */
+            height: 50%;
 
-    /* Place text in the middle of the image */
-    .hero-text {
-        text-align: right;
-        position: absolute;
-        top: 50%;
-        left: 80%;
-        transform: translate(-50%, -50%);
-        color: white;
-    }
+            /* Position and center the image to scale nicely on all screens */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
 
-    A {
-        text-decoration: none;
-    }</style>
+        /* Place text in the middle of the image */
+        .hero-text {
+            text-align: right;
+            position: absolute;
+            top: 50%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+
+        A {
+            text-decoration: none;
+        }
+
+
+        button {
+            border-radius: 4px;
+            background-color: #555050;
+            border: none;
+            color: #fff;
+            text-align: center;
+            font-size: 9px;
+            padding: 16px;
+            width: 170px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 1px;
+            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+        }
+
+        button {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        button:after {
+            content: '>>';
+            position: absolute;
+            opacity: 0;
+            top: 14px;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            padding-right: 24px;
+            padding-left: 8px;
+        }
+
+        button:hover:after {
+            opacity: 1;
+            right: 10px;
+        }
+
+        h1 {
+            font-size: 10px;
+        }
+
+
+        label {
+            float: left;
+            padding-right: 10px;
+        }
+
+        .field {
+
+            clear: both;
+            text-align: right;
+        }
+
+        .main {
+            float: left
+        }
+    </style>
 </head>
 <body>
 <div class="hero-image">
     <div class="hero-text">
-        <p><a style="color:rgba(236,240,242,0.86);">&#9993; autoBase@mail.com &#9743; +(375)33-6-23-23-57</a></p>
-
-        <h1><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p></h1>
+        <p><a style="color:rgba(236,240,242,0.86);">&#x2709;autoBase@mail.com</a></p>
+        <p><a style="color:rgba(236,240,242,0.86);"> &#9743;+(375)33-6-23-23-57</a></p>
+        <p><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p>
     </div>
 </div>
-<div class="container text-center">
-    <div th:if="${autoBaseDto.autoBaseId==null}"><h1>Create New AutoBase</h1></div>
-    <div th:unless="${autoBaseDto.autoBaseId==null}"><h1>Edit AutoBase</h1></div>
-    <form th:action="@{/autoBaseDto/save}" th:object="${autoBaseDto}" method="post"
-          style="max-width: 600px;margin: 0 auto;">
-        <input type="hidden" th:field="*{autoBaseId}"/>
-        <div class="m-3">
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Address:</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{address}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Name Of Organization:</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{nameOfOrganization}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="text-center p-3">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+
+<div class="container text-center" th:if="${autoBaseDto.autoBaseId==null}"><p><h6>Create New AutoBase</h6></p></div>
+<div class="container text-center" th:unless="${autoBaseDto.autoBaseId==null}"><p><h6>Edit AutoBase</h6></p></div>
+<form th:action="@{/autoBaseDto/save}" th:object="${autoBaseDto}" method="post">
+    <input type="hidden" th:field="*{autoBaseId}"/>
+    <div class="main">
+        <div class="field">
+            <h1><label>Address </label>
+                <input type="text" th:field="*{address}"/></h1>
         </div>
-    </form>
-</div>
-<footer>
-    Copyright Andrei Kapranov
+        <div class="field">
+            <h1><label>Name Of Organization </label>
+                <input type="text" th:field="*{nameOfOrganization}"/></h1>
+        </div>
+    </div>
+    <div class="field">
+        <h1><label> </label></h1>
+    </div>
+    <div class="text-center p-3">
+        <button type="submit">Save</button>
+    </div>
+</form>
+<footer><a>
+    Copyright Andrei Kapranov</a>
 </footer>
 </body>
-
-</body>
 </html>
+

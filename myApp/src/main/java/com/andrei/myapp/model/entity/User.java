@@ -2,6 +2,7 @@ package com.andrei.myapp.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -28,16 +29,16 @@ public class User {
     private Date createDate;
     @Column(name = "user_second_name")
     private String secondName;
-    @Column (name = "ready")
+    @Column(name = "ready")
     private Boolean ready;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "driver", cascade = CascadeType.ALL)
-    private List<Auto>autos;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "driver", cascade = CascadeType.ALL)
+    private List<Auto> autos;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "dispatcher", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "dispatcher", cascade = CascadeType.ALL)
     private List<Trip> dispatchersTrips;
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "driver", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "driver", cascade = CascadeType.ALL)
     private List<Trip> driversTrips;
 }
 

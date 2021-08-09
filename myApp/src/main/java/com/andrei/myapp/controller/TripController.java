@@ -1,61 +1,98 @@
 package com.andrei.myapp.controller;
 
-import com.andrei.myapp.model.entity.*;
+import com.andrei.myapp.dto.*;
+import com.andrei.myapp.model.entity.User;
+import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.service.interfaces.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
-
-
+import org.springframework.security.core.context.SecurityContextHolder;
+import java.util.*;
 
 @Controller
 public class TripController {
     private final UserService userService;
-    private final AutoBaseService autoBaseService;
-    private final AutoService autoService;
-    private final OrderService orderService;
-    private final TripService tripService;
+    private final UserDtoService userDtoService;
+    private final AutoBaseDtoService autoBaseDtoService;
+    private final RoleDtoService roleDtoService;
+    private final AutoDtoService autoDtoService;
+    private final OrderDtoService orderDtoService;
+    private final TripDtoService tripDtoService;
 
-    public TripController(UserService userService, AutoBaseService autoBaseService, AutoService autoService, OrderService orderService, TripService tripService) {
+    public TripController(UserService userService, UserDtoService userDtoService, AutoBaseDtoService autoBaseDtoService, RoleDtoService roleDtoService, AutoDtoService autoDtoService, OrderDtoService orderDtoService, TripDtoService tripDtoService) {
         this.userService = userService;
-        this.autoBaseService = autoBaseService;
-
-        this.autoService = autoService;
-        this.orderService = orderService;
-        this.tripService = tripService;
+        this.userDtoService = userDtoService;
+        this.autoBaseDtoService = autoBaseDtoService;
+        this.roleDtoService = roleDtoService;
+        this.autoDtoService = autoDtoService;
+        this.orderDtoService = orderDtoService;
+        this.tripDtoService = tripDtoService;
     }
 
-    @GetMapping("/trips")
+
+    @GetMapping("/tripDtos")
     public String showTripList(Model model) {
-        List<Trip> trips = tripService.getAll();
-        model.addAttribute("trips", trips);
-        return "trips";
+        List<TripDto> tripDtos = tripDtoService.getAll();
+        model.addAttribute("tripDtos", tripDtos);
+        return "tripDtos";
     }
 
+    @GetMapping("/driver/tripDtos")
+    public String showDriversTripList(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        User driver = userService.getUserByUsername(userName);
+        List<TripDto> tripDtos = tripDtoService.getTripsByDriver(driver);
+        model.addAttribute("tripDtos", tripDtos);
+        return "tripDtos";
+    }
+    @GetMapping("/dispatcher/tripDtos")
+    public String showDispatchersTripList(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        User dispatcher = userService.getUserByUsername(userName);
+        List<TripDto> tripDtos = tripDtoService.getTripsByDispatcher(dispatcher);
+        model.addAttribute("tripDtos", tripDtos);
+        return "tripDtos";
+    }
 
-    @GetMapping("/trip/new")
+    @GetMapping("/requestTripDto/new")
     public String showAddTripForm(Model model) {
-        List<AutoBase> autoBases = autoBaseService.getAll();
-        List<User> users = userService.getAll();
-        List<Auto> autos = autoService.getAll();
-        List<Orders> orders = orderService.getAll();
-        model.addAttribute("trip", new Trip());
-        model.addAttribute("orders", orders);
-        model.addAttribute("users", users);
-        model.addAttribute("autos", autos);
-        model.addAttribute("autoBases", autoBases);
-
-        return "trip_form";
+        List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
+        List<OrdersDto> ordersDtos = orderDtoService.getAll();
+        List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
+        List<UserDto> dispatchers = userDtoService.getUsersByRoleRolEnum(RolEnum.DISPATCHER);
+        model.addAttribute("requestTripDto", new RequestTripDto());
+        model.addAttribute("ordersDtos", ordersDtos);
+        model.addAttribute("autoBaseDtos", autoBaseDtos);
+        model.addAttribute("drivers", drivers);
+        model.addAttribute("dispatchers", dispatchers);
+        return "tripDto_form";
 
     }
 
-    @PostMapping("trip/save")
-    public String saveTrip(Trip trip) {
-        tripService.save(trip);
-
+    @PostMapping("requestTripDto/save")
+    public String saveRequestTripDto(RequestTripDto requestTripDto) {
+        tripDtoService.save(requestTripDto);
         return "redirect:/";
+    }
+
+    @GetMapping("/tripDtos/edit/{tripId}")
+    public String showEditTripForm(@PathVariable("tripId") Long tripId, Model model) {
+        List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
+        List<OrdersDto> ordersDtos = orderDtoService.getAll();
+        List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
+        List<UserDto> dispatchers = userDtoService.getUsersByRoleRolEnum(RolEnum.DISPATCHER);
+        RequestTripDto requestTripDto = tripDtoService.getTripByTripId(tripId);
+        model.addAttribute("requestTripDto", requestTripDto);
+        model.addAttribute("ordersDtos", ordersDtos);
+        model.addAttribute("autoBaseDtos", autoBaseDtos);
+        model.addAttribute("drivers", drivers);
+        model.addAttribute("dispatchers", dispatchers);
+        return "tripDto_form";
     }
 }

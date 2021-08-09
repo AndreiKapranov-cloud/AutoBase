@@ -80,19 +80,22 @@
         A {
             text-decoration: none;
         }
-    </style>
+        a{font-size:70%;}
+        .table td, .table th {
+            font-size: 10px;
+        } </style>
 
 </head>
 <body>
 <div class="hero-image">
     <div class="hero-text">
-        <p> <a style="color:rgba(236,240,242,0.86);" >&#9993; autoBase@mail.com &#9743; +(375)33-6-23-23-57</a></p>
-
-        <h1><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p></h1>
+        <p><a style="color:rgba(236,240,242,0.86);">&#x2709;autoBase@mail.com</a></p>
+        <p><a style="color:rgba(236,240,242,0.86);"> &#9743;+(375)33-6-23-23-57</a></p>
+        <p><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p>
     </div>
 </div>
 <div class="container text-center">
-    <div><h1>Users List</h1></div>
+    <div><h6>Users List</h6></div>
     <div>
         <table class="table table-bordered">
             <thread class="thead-dark">
@@ -117,19 +120,16 @@
                     <td>[[${userDto.ready}]]</td>
                     <td>[[${(userDto.role).getRolEnum}]]</td>
                     <td><a th:href="@{'/userDtos/edit/' +${userDto.userId}}">
-                        <button
-                        >Edit
-                        </button>
-                    </a></td>
+                        Edit</a></td>
                 </tr>
             </th:block>
             </tbody>
         </table>
     </div>
 </div>
-<footer>
+<footer><small>
     Copyright Andrei Kapranov
-</footer></body>
+</small></footer></body>
 
 </body>
 </html>

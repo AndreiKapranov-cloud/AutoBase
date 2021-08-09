@@ -199,11 +199,6 @@
     <a th:inline="text" style="color:#4e4949;">Nice to meet you,[[${#httpServletRequest.remoteUser}]]</a>
 </div>
 <div class="container text-center">
-    <a th:href="@{/dispatcher}" style="color:#555050;">Dispatcher</a>
-    <a th:href="@{/driver}" style="color:#555050;">Driver</a>
-
-</div>
-<div class="container text-center">
     <a href="javascript: logoutForm.submit();" style="color:#555050;">Sign Out</a>
 </div>
 <div class="container text-center">
@@ -215,44 +210,17 @@
 
 
 <div class="container text-center"><tr>
-    <td><a th:href="@{/userDtos}">
-        <button
-        >The Last Of Users
-        </button>
-    </a></td>
-    <td><a th:href="@{/userDto/new}">
-        <button
-        >Add User
-        </button>
-    </a></td>
-
-
-    <td><a th:href="@{/autoDtos}">
-        <button
-        >List of autos
-        </button>
-    </a></td>
-
-
-    <td><a th:href="@{/autoDto/new}">
-        <button
-        >Add Auto
-        </button>
-    </a></td>
-</tr></div>
-<div class="container text-center"><tr>
     <td><a th:href="@{/orderDtos}">
         <button
         >List Of Orders
         </button>
     </a></td>
-
     <td><a th:href="@{/orderDto/new}">
         <button
         >Add Order
         </button>
     </a></td>
-    <td><a th:href="@{/tripDtos}">
+    <td><a th:href="@{/dispatcher/tripDtos}">
         <button1
         >List Of Trips
         </button1>
@@ -262,19 +230,7 @@
         >Add Trip
         </button>
     </a></td></div>
-<div class="container text-center"></tr>
-<tr class="container text-center">
-    <td><a th:href="@{/autoBaseDtos}">
-        <button
-        >List Of AutoBases
-        </button>
-    </a></td>
-    <td><a th:href="@{/autoBaseDto/new}">
-        <button
-        >Add AutoBase
-        </button>
-    </a></td>
-</tr></div>
+
 
 <footer>
     <a>Copyright Andrei Kapranov</a>

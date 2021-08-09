@@ -2,6 +2,7 @@ package com.andrei.myapp.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.sql.Date;
 import java.util.List;

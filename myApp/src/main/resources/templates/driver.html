@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <meta charset="ISO-8859-1">
+  <title>Autobase Homepage</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
+  <style>
+    a {
+      font-size: 70%;
+    }
+
+    body {
+      background-color: #bfc9cb;
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    /* The hero image */
+    .hero-image {
+      /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images5.alphacoders.com/330/thumb-1920-330623.jpg");
+
+      /* Set a specific height */
+      height: 100%;
+
+      /* Position and center the image to scale nicely on all screens */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+
+    /* Place text in the middle of the image */
+    .hero-text {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+
+
+    .polling_message {
+      color: white;
+      float: left;
+      margin-right: 2%;
+    }
+
+    .view_port {
+      background-color: black;
+      height: 25px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .cylon_eye {
+      background-color: #5e5656;
+      background-image: linear-gradient(to right,
+      rgba(0, 0, 0, .9) 25%,
+      rgba(0, 0, 0, .1) 50%,
+      rgba(0, 0, 0, .9) 75%);
+      color: white;
+      height: 100%;
+      width: 20%;
+
+      -webkit-animation: 4s linear 0s infinite alternate move_eye;
+      animation: 4s linear 0s infinite alternate move_eye;
+    }
+
+    @-webkit-keyframes move_eye {
+      from {
+        margin-left: -20%;
+      }
+      to {
+        margin-left: 100%;
+      }
+    }
+
+    @keyframes move_eye {
+      from {
+        margin-left: -20%;
+      }
+      to {
+        margin-left: 100%;
+      }
+    }
+
+    button {
+      border-radius: 4px;
+      background-color: #555050;
+      border: none;
+      color: #fff;
+      text-align: center;
+      font-size: 9px;
+      padding: 16px;
+      width: 60px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 1px;
+      box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+    }
+
+    button {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    button:after {
+      content: '>>';
+      position: absolute;
+      opacity: 0;
+      top: 14px;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    button:hover {
+      padding-right: 24px;
+      padding-left: 8px;
+    }
+
+    button:hover:after {
+      opacity: 1;
+      right: 10px;
+    }
+    button1 {
+      border-radius: 4px;
+      background-color: #5a4a5e;
+      border: none;
+      color: #fff;
+      text-align: center;
+      font-size: 9px;
+      padding: 16px;
+      width: 80px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 1px;
+      box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+    }
+
+    button1{
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    button1:after {
+      content: '>>';
+      position: absolute;
+      opacity: 0;
+      top: 14px;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    button1:hover {
+      padding-right: 24px;
+      padding-left: 8px;
+    }
+
+    button1:hover:after {
+      opacity: 1;
+      right: 10px;
+    }
+
+    A {
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    function reloadThePage() {
+      window.location.reload();
+    }
+  </script>
+</head>
+<body>
+<div class="hero-image">
+  <div class="hero-text">
+    <p><a style="color:rgba(236,240,242,0.86);">AUTOBASE</a></p>
+    <p><a style="color:rgba(236,240,242,0.86);">&#9993; autoBase@mail.com </a></p>
+    <p><a style="color:rgba(236,240,242,0.86);">&#9743; +(375)33-6-23-23-57</a></p>
+  </div>
+</div>
+<div class="view_port">
+  <div class="polling_message">
+    AutoBase
+  </div>
+  <div class="cylon_eye"></div>
+</div>
+<div class="container text-center">
+  <a th:inline="text" style="color:#4e4949;">Nice to meet you,[[${#httpServletRequest.remoteUser}]]</a>
+</div>
+<div class="container text-center">
+  <a href="javascript: logoutForm.submit();" style="color:#555050;">Sign Out</a>
+</div>
+<div class="container text-center">
+  <a style="color:#555050;" href="javascript:reloadThePage() ;">&#9760</a>
+</div>
+<form name="logoutForm" th:hidden="true" method="post" th:action="@{/logout}">
+  <input type="submit" value="Logout"/>
+</form>
+
+
+<div class="container text-center"><tr>
+
+  <td><a th:href="@{/driver/tripDtos}">
+    <button1
+    >List Of Trips
+    </button1>
+  </a></td>
+</tr></div>
+<footer>
+  <a>Copyright Andrei Kapranov</a>
+</footer>
+
+</body>
+</html>

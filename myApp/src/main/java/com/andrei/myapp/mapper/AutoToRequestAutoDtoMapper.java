@@ -3,6 +3,7 @@ package com.andrei.myapp.mapper;
 import com.andrei.myapp.dto.RequestAutoDto;
 import com.andrei.myapp.model.entity.Auto;
 import com.andrei.myapp.service.interfaces.UserService;
+import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component

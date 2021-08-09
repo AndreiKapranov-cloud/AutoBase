@@ -50,4 +50,27 @@ public RequestTripDto getTripByTripId(Long tripId){
         RequestTripDto requestTripDto = tripToRequestTripDtoMapperImpl.tripToRequestTripDto(trip);
         return requestTripDto;
 }
+
+    @Override
+    public List<TripDto> getTripsByDriver(User driver) {
+            List<Trip> trips = dao.getTripsByDriver(driver);
+            List<TripDto> tripDtos = new ArrayList<>();
+            trips.forEach(trip -> {
+                TripDto tripDto = new TripDto();
+                tripDto=mapper.tripToTripDto(trip);
+                tripDtos.add(tripDto);
+            });
+            return tripDtos;
+        }
+    @Override
+    public List<TripDto> getTripsByDispatcher(User dispatcher) {
+        List<Trip> trips = dao.getTripsByDispatcher(dispatcher);
+        List<TripDto> tripDtos = new ArrayList<>();
+        trips.forEach(trip -> {
+            TripDto tripDto = new TripDto();
+            tripDto=mapper.tripToTripDto(trip);
+            tripDtos.add(tripDto);
+        });
+        return tripDtos;
+    }
 }

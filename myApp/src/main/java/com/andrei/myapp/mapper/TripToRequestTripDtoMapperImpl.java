@@ -3,15 +3,18 @@ package com.andrei.myapp.mapper;
 import com.andrei.myapp.dto.RequestTripDto;
 import com.andrei.myapp.model.entity.Trip;
 import com.andrei.myapp.service.impl.*;
+import com.andrei.myapp.service.interfaces.AutoBaseService;
+import com.andrei.myapp.service.interfaces.OrderService;
+import com.andrei.myapp.service.interfaces.UserService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TripToRequestTripDtoMapperImpl {
-    private final AutoBaseServiceImpl autoBaseService;
-    private final OrderServiceImpl orderService;
-    private final UserServiceImpl userService;
+    private final AutoBaseService autoBaseService;
+    private final OrderService orderService;
+    private final UserService userService;
 
-    public TripToRequestTripDtoMapperImpl(AutoBaseServiceImpl autoBaseService, OrderServiceImpl orderService, UserServiceImpl userService) {
+    public TripToRequestTripDtoMapperImpl(AutoBaseService autoBaseService, OrderService orderService, UserService userService) {
         this.autoBaseService = autoBaseService;
         this.orderService = orderService;
         this.userService = userService;
@@ -22,10 +25,10 @@ public class TripToRequestTripDtoMapperImpl {
         requestTripDto.setTripId(trip.getTripId());
         requestTripDto.setDistanceKm(trip.getDistanceKm());
         requestTripDto.setFinished(trip.getFinished());
-        requestTripDto.setAutoBase(String.valueOf(trip.getAutoBase()));
-        requestTripDto.setOrders(String.valueOf(trip.getOrders()));
-        requestTripDto.setDispatcher(String.valueOf(trip.getDispatcher()));
-        requestTripDto.setDriver(String.valueOf(trip.getDriver()));
+        requestTripDto.setOrders(String.valueOf((trip.getOrders()).getOrderId()));
+        requestTripDto.setAutoBase(String.valueOf((trip.getAutoBase()).getAutoBaseId()));
+        requestTripDto.setDispatcher(String.valueOf((trip.getDispatcher()).getUserId()));
+        requestTripDto.setDriver(String.valueOf((trip.getDriver()).getUserId()));
         return requestTripDto;
     }
 

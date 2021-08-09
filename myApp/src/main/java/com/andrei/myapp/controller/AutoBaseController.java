@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 @Controller
-public class AutoBaseDtoController {
+public class AutoBaseController {
     private final AutoBaseDtoService autoBaseDtoService;
 
-    public AutoBaseDtoController(AutoBaseDtoService autoBaseDtoService) {
+    public AutoBaseController(AutoBaseDtoService autoBaseDtoService) {
         this.autoBaseDtoService = autoBaseDtoService;
     }
 

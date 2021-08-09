@@ -10,7 +10,11 @@ import java.util.List;
 
 @Repository
 public interface UserDao extends JpaRepository<User, Long> {
+    User getUserByUserName(String userName);
+
     User getUserByUserId(Long userId);
+
+    User getUserByUserEmail(String userEmail);
 
     List<User> getUsersByRoleEquals(Role role);
 

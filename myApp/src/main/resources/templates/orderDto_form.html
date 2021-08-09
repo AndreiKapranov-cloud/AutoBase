@@ -37,57 +37,113 @@
 
     A {
         text-decoration: none;
-    }</style>
+    }
+
+    a {
+        font-size: 70%;
+    }
+
+    td {
+        font-size: 10px;
+    }
+
+    button {
+        border-radius: 4px;
+        background-color: #555050;
+        border: none;
+        color: #fff;
+        text-align: center;
+        font-size: 9px;
+        padding: 16px;
+        width: 170px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 1px;
+        box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+    }
+
+    button {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+    button:after {
+        content: '>>';
+        position: absolute;
+        opacity: 0;
+        top: 14px;
+        right: -20px;
+        transition: 0.5s;
+    }
+
+    button:hover {
+        padding-right: 24px;
+        padding-left: 8px;
+    }
+
+    button:hover:after {
+        opacity: 1;
+        right: 10px;
+    }
+
+    h1 {
+        font-size: 10px;
+    }
+
+
+    label {
+        float: left;
+        padding-right: 10px;
+    }
+
+    .field {
+
+        clear: both;
+        text-align: right;
+    }
+
+    .main {
+        float: left
+    }
+    </style>
 </head>
 <body>
 <div class="hero-image">
     <div class="hero-text">
-        <p><a style="color:rgba(236,240,242,0.86);">&#9993; autoBase@mail.com &#9743; +(375)33-6-23-23-57</a></p>
-
-        <h1><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p></h1>
+        <p><a style="color:rgba(236,240,242,0.86);">&#x2709;autoBase@mail.com</a></p>
+        <p><a style="color:rgba(236,240,242,0.86);"> &#9743;+(375)33-6-23-23-57</a></p>
+        <p><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p>
     </div>
 </div>
-<div class="container text-center">
-    <div th:if="${ordersDto.orderId==null}"><h1>Create New Order</h1></div>
-    <div th:unless="${ordersDto.orderId==null}"><h1>Edit Order</h1></div>
-    <form th:action="@{/orderDto/save}" th:object="${ordersDto}" method="post"
-          style="max-width: 600px;margin: 0 auto;">
-        <input type="hidden" th:field="*{orderId}"/>
-        <div class="m-3">
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Term Of Delivery:</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{termOfDelivery}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Weight:</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{weight}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Delivery Address</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{deliveryAddress}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="text-center p-3">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+<div class="container text-center" th:if="${ordersDto.orderId==null}"><p><h6>Create New Order</h6></p></div>
+<div class="container text-center" th:unless="${ordersDto.orderId==null}"><p><h6>Edit Order</h6></p></div>
+<form th:action="@{/orderDto/save}" th:object="${ordersDto}" method="post">
+    <input type="hidden" th:field="*{orderId}"/>
+    <div class="main">
+        <div class="field">
+            <h1><label>Term Of Delivery: </label>
+                <input type="text" th:field="*{termOfDelivery}"/></h1>
         </div>
-    </form>
-</div>
-<footer>
-    Copyright Andrei Kapranov
+        <div class="field">
+            <h1><label>Weight: </label>
+                <input type="text" th:field="*{weight}"/></h1>
+        </div>
+        <div class="field">
+            <h1><label>Delivery Address: </label>
+                <input type="text" th:field="*{deliveryAddress}"/></h1>
+        </div>
+    </div>
+        <div class="field">
+            <h1><label> </label></h1>
+        </div>
+        <div class="text-center p-3">
+            <button type="submit">Save</button>
+        </div>
+</form>
+<footer><a>
+    Copyright Andrei Kapranov</a>
 </footer>
-</body>
-
 </body>
 </html>

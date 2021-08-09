@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <meta charset="ISO-8859-1">
     <title>Create New Auto</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
@@ -33,85 +34,139 @@
         transform: translate(-50%, -50%);
         color: white;
     }
+
+
     A {
         text-decoration: none;
+    }
+
+    a {
+        font-size: 70%;
+    }
+
+    h1 {
+        font-size: 10px;
+    }
+
+    td {
+        font-size: 10px;
+    }
+
+    button {
+        border-radius: 4px;
+        background-color: #555050;
+        border: none;
+        color: #fff;
+        text-align: center;
+        font-size: 9px;
+        padding: 16px;
+        width: 170px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 1px;
+        box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+    }
+
+    button {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+    button:after {
+        content: '>>';
+        position: absolute;
+        opacity: 0;
+        top: 14px;
+        right: -20px;
+        transition: 0.5s;
+    }
+
+    button:hover {
+        padding-right: 24px;
+        padding-left: 8px;
+    }
+
+    button:hover:after {
+        opacity: 1;
+        right: 10px;
+    }
+
+    h1 {
+        font-size: 10px;
+    }
+
+
+    label {
+        float: left;
+        padding-right: 10px;
+    }
+
+    .field {
+
+        clear: both;
+        text-align: right;
+    }
+
+    .main {
+        float: left
     }
     </style>
 </head>
 <body>
 <div class="hero-image">
     <div class="hero-text">
-        <p> <a style="color:rgba(236,240,242,0.86);" >&#9993; autoBase@mail.com &#9743; +(375)33-6-23-23-57</a></p>
-
-        <h1><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p></h1>
+        <p><a style="color:rgba(236,240,242,0.86);">&#x2709;autoBase@mail.com</a></p>
+        <p><a style="color:rgba(236,240,242,0.86);"> &#9743;+(375)33-6-23-23-57</a></p>
+        <p><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p>
     </div>
 </div>
-<div class="container text-center">
-    <div th:if="${autoDto.autoId==null}"><h1>Create New Auto</h1></div>
-    <div th:unless="${autoDto.autoId==null}"><h1>Edit Auto</h1></div>
-    <form th:action="@{/autoDto/save}" th:object="${autoDto}" method="post"
-          style="max-width: 600px;margin: 0 auto;">
-        <input type="hidden" th:field="*{autoId}"/>
-        <div class="m-3">
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Auto Number:</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{number}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Auto Carrying Capacity:</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{carryingCapacity}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Auto Max Weight With Cargo Kg:</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{maxWeightWithCargoKg}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Auto MaxVolume</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{maxVolumeM3}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Auto Technical Inspection</label>
-                <div class="col-sm-8">
-                    <label>
-                        <input type="text" th:field="*{technicalInspection}" class="form-control" required/>
-                    </label>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-form-label col-sm-4">Driver:</label>
-                <div class="col-sm-8">
-                    <select th:field="*{driver}" class="form-control" required>
-                        <th:block th:each="a : ${drivers}">
-                            <option th:text="${a.secondName}" th:value="${a.userId}"></option>
-                        </th:block>
-                    </select>
-                </div>
-            </div>
-            <div class="text-center p-3">
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
+<div class="container text-center" th:if="${autoDto.autoId==null}"><p><h6>Create New Auto</h6></p></div>
+<div class="container text-center" th:unless="${autoDto.autoId==null}"><p><h6>Edit Auto</h6></p></div>
+<form th:action="@{/autoDto/save}" th:object="${autoDto}" method="post">
+    <input type="hidden" th:field="*{autoId}"/>
+    <div class="main">
+        <div class="field">
+            <h1><label>Auto Number: </label>
+                <input type="text" th:field="*{number}"/></h1>
         </div>
-    </form>
-</div>
-<footer>
-    Copyright Andrei Kapranov
-</footer></body>
-
+        <div class="field">
+            <h1><label>Auto Carrying Capacity: </label>
+                <input type="text" th:field="*{carryingCapacity}"/></h1>
+        </div>
+        <div class="field">
+            <h1><label>Auto Max Weight With Cargo Kg: </label>
+                <input type="text" th:field="*{maxWeightWithCargoKg}"/></h1>
+        </div>
+        <div class="field">
+            <h1><label>Auto MaxVolume: </label>
+                <input type="text" th:field="*{maxVolumeM3}"/></h1>
+        </div>
+        <div class="field">
+            <h1><label>Auto Technical Inspection: </label>
+                <input type="text" th:field="*{technicalInspection}"/></h1>
+        </div>
+        <div class="field">
+            <h1><label>Driver: </label>
+                <select th:field="*{driver}">
+                    <th:block th:each="a : ${drivers}">
+                        <option th:text="${a.secondName}" th:value="${a.userId}"></option>
+                    </th:block>
+                </select></h1>
+        </div>
+    </div>
+    <div class="field">
+        <h1><label> </label></h1>
+    </div>
+    <div class="text-center p-3">
+        <button type="submit">Save</button>
+    </div>
+</form>
+<footer><a>
+    Copyright Andrei Kapranov</a>
+</footer>
 </body>
 </html>
+
+

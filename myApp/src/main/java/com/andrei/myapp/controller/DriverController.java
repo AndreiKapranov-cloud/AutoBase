@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 @Controller
-public class DriverDtoController {
+public class DriverController {
     private final UserDtoService userDtoService;
 
-    public DriverDtoController(UserDtoService userDtoService) {
+    public DriverController(UserDtoService userDtoService) {
         this.userDtoService = userDtoService;
     }
 
