@@ -113,17 +113,14 @@
 <div class="container text-center">
     <h1><h6>Trip</h6></h1>
 </div>
-<form th:action="@{/requestTripDto/save}" th:object="${requestTripDto}" method="post">
+<form th:action="@{/admin/requestTripDto/save}" th:object="${requestTripDto}" method="post">
     <input type="hidden" th:field="*{tripId}"/>
     <div class="main">
         <div class="field">
             <h1><label>Distance: </label>
                 <input type="text" th:field="*{distanceKm}"/></h1>
         </div>
-        <div class="field">
-            <h1><label>Finished: </label>
-                <input type="text" th:field="*{finished}"/></h1>
-        </div>
+
         <div class="field">
             <h1><label>Order: </label>
                 <select th:field="*{orders}">

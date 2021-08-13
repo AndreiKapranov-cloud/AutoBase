@@ -40,7 +40,7 @@ public class TripDtoServiceImpl implements TripDtoService {
 
    @Override
    @Transactional
-    public Trip save(RequestTripDto requestTripDto) {
+    public synchronized Trip save(RequestTripDto requestTripDto) {
         Trip trip= tripToRequestTripDtoMapperImpl.requestTripDtoToTrip(requestTripDto);
         return dao.save(trip);
     }

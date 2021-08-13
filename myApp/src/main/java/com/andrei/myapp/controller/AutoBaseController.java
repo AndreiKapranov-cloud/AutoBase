@@ -20,7 +20,7 @@ public class AutoBaseController {
         this.autoBaseDtoService = autoBaseDtoService;
     }
 
-    @GetMapping("/autoBaseDtos")
+    @GetMapping("admin/autoBaseDtos")
     public String showAutoBaseList(Model model) {
         List<AutoBaseDto>autoBaseDtos = autoBaseDtoService.getAll();
         model.addAttribute("autoBaseDtos",autoBaseDtos);
@@ -28,20 +28,20 @@ public class AutoBaseController {
     }
 
 
-    @GetMapping("/autoBaseDto/new")
+    @GetMapping("admin/autoBaseDto/new")
     public String showAddAutoBaseForm(Model model) {
         model.addAttribute("autoBaseDto", new AutoBaseDto());
         return "autoBaseDto_form";
 
     }
 
-    @PostMapping("autoBaseDto/save")
+    @PostMapping("admin/autoBaseDto/save")
     public String saveUserDto(AutoBaseDto autoBaseDto) {
         autoBaseDtoService.save(autoBaseDto);
         return "redirect:/";
     }
 
-    @GetMapping("/autoBaseDtos/edit/{autoBaseId}")
+    @GetMapping("admin/autoBaseDtos/edit/{autoBaseId}")
     public String showEditAutoBaseForm(@PathVariable("autoBaseId") Long autoBaseId, Model model) {
         AutoBaseDto autoBaseDto = autoBaseDtoService.getAutoBaseByAutoBaseId(autoBaseId);
         model.addAttribute("autoBaseDto",autoBaseDto);

@@ -17,11 +17,11 @@ public class DriverController {
         this.userDtoService = userDtoService;
     }
 
-    @GetMapping("/drivers")
-    public String showDriverList(Model model) {
+    @GetMapping("admin/drivers")
+    public String showDriversList(Model model) {
         List<UserDto>drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
         model.addAttribute("drivers",drivers);
-        return "drivers";
+        return "listOfDrivers";
     }
 
 }

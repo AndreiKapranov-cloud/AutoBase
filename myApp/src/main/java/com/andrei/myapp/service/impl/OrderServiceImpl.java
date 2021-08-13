@@ -13,10 +13,7 @@ public class OrderServiceImpl implements OrderService {
 
     public OrderServiceImpl(OrderDao dao) {
         this.dao = dao;
-
-
     }
-
     @Override
     public List<Orders> getAll() {
         List<Orders> orders = dao.findAll();
@@ -30,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Orders save(Orders orders) {
+    public synchronized Orders save(Orders orders) {
         return dao.save(orders);
     }
 

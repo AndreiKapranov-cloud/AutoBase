@@ -12,4 +12,5 @@ public interface UserService {
     User save(User user);
     User getUserById(Long userId);
     List<User>getUsersByRoleEquals(Role role);
+    List<User> getUsersByAuto_CarryingCapacityIsGreaterThan(int carryingCapacity);
 }

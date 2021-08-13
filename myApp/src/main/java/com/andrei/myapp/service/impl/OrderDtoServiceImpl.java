@@ -42,7 +42,7 @@ public class OrderDtoServiceImpl implements OrderDtoService {
 
     @Override
     @Transactional
-    public Orders save(OrdersDto ordersDto) {
+    public synchronized Orders save(OrdersDto ordersDto) {
         Orders orders = mapper.ordersDtoToOrders(ordersDto);
         return dao.save(orders);
     }

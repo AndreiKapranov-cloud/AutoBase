@@ -16,7 +16,7 @@
         /* The hero image */
         .hero-image {
             /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://s1.1zoom.ru/big0/629/Sunrises_and_sunsets_Trucks_Retro_Grass_Old_Side_605279_1280x844.jpg");
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("https://s1.1zoom.ru/big0/629/Sunrises_and_sunsets_Trucks_Retro_Grass_Old_Side_605279_1280x844.jpg");
 
 
             /* Set a specific height */
@@ -84,7 +84,7 @@
                     <td>[[${autoDto.maxWeightWithCargoKg}]]</td>
                     <td>[[${autoDto.maxVolumeM3}]]</td>
                     <td>[[${autoDto.technicalInspection}]]</td>
-                    <td><a th:href="@{'/autoDtos/edit/' +${autoDto.autoId}}">
+                    <td><a th:href="@{'autoDtos/edit/' +${autoDto.autoId}}">
                         Edit</a></td>
                 </tr>
             </th:block>

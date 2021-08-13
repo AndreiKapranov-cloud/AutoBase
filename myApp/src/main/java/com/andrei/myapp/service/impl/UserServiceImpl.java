@@ -13,14 +13,9 @@ public class UserServiceImpl implements UserService {
 
     private final UserDao dao;
 
-
-
     public UserServiceImpl(UserDao dao) {
         this.dao = dao;
-
-
     }
-
     @Override
     public User getUserByUsername(String userName) {
         return dao.getUserByUserName(userName);
@@ -31,7 +26,7 @@ public class UserServiceImpl implements UserService {
         return dao.findAll();
     }
     @Override
-    public User save(User user) {
+    public synchronized User save(User user) {
         return dao.save(user);
     }
 
@@ -43,6 +38,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUsersByRoleEquals(Role role) {
         return dao.getUsersByRoleEquals(role);
+    }
+
+    @Override
+    public List<User> getUsersByAuto_CarryingCapacityIsGreaterThan(int carryingCapacity) {
+     return dao.getUsersByAuto_CarryingCapacityIsGreaterThan(carryingCapacity);
     }
 
 }

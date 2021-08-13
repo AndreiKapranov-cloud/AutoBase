@@ -9,10 +9,10 @@ import org.mapstruct.Mapping;
 public interface ToUserDtoMapper {
     @Mapping(target = "dispatchersTrips", ignore = true)
     @Mapping(target = "driversTrips", ignore = true)
-    @Mapping(target = "autos",ignore = true)
+    @Mapping(target = "auto", ignore = true)
     UserDto userToUserDto(User user);
     @Mapping(target = "dispatchersTrips", ignore = true)
     @Mapping(target = "driversTrips", ignore = true)
-    @Mapping(target = "autos",ignore = true)
+    @Mapping(target = "auto", ignore = true)
     User userDtoToUser(UserDto userDto);
 }

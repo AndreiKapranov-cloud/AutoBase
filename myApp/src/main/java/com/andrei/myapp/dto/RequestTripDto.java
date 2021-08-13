@@ -8,7 +8,8 @@ import lombok.Setter;
 public class RequestTripDto {
     private Long tripId;
     private int distanceKm;
-    private Boolean finished;
+    private String tripStatus;
+    private int fuelLitres;
     private String orders;
     private String autoBase;
     private String dispatcher ;

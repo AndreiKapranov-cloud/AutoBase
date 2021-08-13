@@ -21,7 +21,7 @@ public class RoleController {
         this.tripDtoService = tripDtoService;
     }
 
-    @GetMapping("/roleDtos")
+    @GetMapping("admin/roleDtos")
     public String showRoleList(Model model) {
 
         model.addAttribute("roles", roleDtoService.getAll());

@@ -49,7 +49,7 @@ public class AutoBaseDtoServiceImpl implements AutoBaseDtoService {
 
     @Override
     @Transactional
-    public AutoBase save(AutoBaseDto autoBaseDto) {
+    public synchronized AutoBase save(AutoBaseDto autoBaseDto) {
         AutoBase autoBase =mapper.autoBaseDtoToAutoBase(autoBaseDto);
         return dao.save(autoBase);
     }

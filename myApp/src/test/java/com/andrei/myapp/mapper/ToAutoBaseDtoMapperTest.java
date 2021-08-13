@@ -1,4 +1,4 @@
-package com.andrei.myapp;
+package com.andrei.myapp.mapper;
 
 import com.andrei.myapp.dto.AutoBaseDto;
 import com.andrei.myapp.mapper.ToAutoBaseDtoMapper;

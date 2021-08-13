@@ -126,7 +126,7 @@
 </div>
 <div class="container text-center" th:if="${userDto.userId==null}"><p><h6>Create New User</h6></p></div>
 <div class="container text-center" th:unless="${userDto.userId==null}"><p><h6>Edit User</h6></p></div>
-<form th:action="@{/userDto/save}" th:object="${userDto}" method="post">
+<form th:action="@{/admin/userDto/save}" th:object="${userDto}" method="post">
     <input type="hidden" th:field="*{userId}"/>
     <div class="main">
         <div class="field">
@@ -148,10 +148,6 @@
         <div class="field">
             <h1><label>Date Created: </label>
                 <input type="text" th:field="*{createDate}"/></h1>
-        </div>
-        <div class="field">
-            <h1><label>Ready: </label>
-                <input type="text" th:field="*{ready}"/></h1>
         </div>
         <div class="field">
             <h1><label>Role: </label>

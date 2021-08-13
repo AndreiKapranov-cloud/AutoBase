@@ -35,7 +35,7 @@ public class AutoBaseServiceImpl implements AutoBaseService {
 
 
     @Override
-    public AutoBase save(AutoBase autoBase) {
+    public synchronized AutoBase save(AutoBase autoBase) {
         return dao.save(autoBase);
     }
 }

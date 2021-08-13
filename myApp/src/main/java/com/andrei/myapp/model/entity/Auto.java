@@ -24,8 +24,9 @@ public class Auto {
     private int maxVolumeM3;
     @Column(name = "technical_inspection", nullable = false)
     private Boolean technicalInspection;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @Column(name = "fuel_consumptionL_100Km")
+    private int fuelConsumption;
+    @OneToOne(mappedBy = "auto")
     private User driver;
 
 }

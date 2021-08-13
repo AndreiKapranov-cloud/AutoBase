@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:form="http://www.w3.org/1999/xhtml" xmlns:c="">
+<html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -39,6 +38,7 @@
   A {
     text-decoration: none;
   }
+
   button {
     border-radius: 4px;
     background-color: #555050;
@@ -79,29 +79,16 @@
     opacity: 1;
     right: 10px;
   }
-
   h1 {
     font-size: 10px;
   }
-
-  A {
-    text-decoration: none;
-  }
-
   a {
     font-size: 70%;
   }
 
-  h1 {
-    font-size: 10px;
-  }
-  td {
-    font-size: 10px;
-  }
-
   label {
     float: left;
-    padding-right:10px;
+    padding-right: 10px;
   }
 
   .field {
@@ -123,45 +110,62 @@
     <p><a style="color:rgba(247,249,250,0.86);" th:href="@{/}">Back to the Homepage</a></p>
   </div>
 </div>
-  <div class="container text-center" th:unless="${userDto.userId==null}"><h1>Edit User</h1></div>
-  <form th:action="@{/userDto/saveWhenEdit}" th:object="${userDto}" method="post">
-    <input type="hidden" th:field="*{userId}"/>
-    <div class="main">
-      <div class="field">
-        <h1><label>User Second Name: </label>
-          <input type="text" th:field="*{secondName}"/></h1>
-      </div>
-      <div class="field">
-        <h1><label>User Password:  </label>
-          <input type="text" th:field="*{password}"/></h1>
-      </div>
-      <div class="field">
-        <h1><label>Date Created: </label>
-          <input type="text" th:field="*{createDate}"/></h1>
-      </div>
-      <div class="field">
-        <h1><label>Ready:  </label>
-          <input type="text" th:field="*{ready}"/></h1>
-      </div>
-      <div class="field">
-        <h1><label>Role: </label>
-          <select th:field="*{role}" >
-            <th:block th:each="a : ${roleDtos}">
-              <option th:text="${a.rolEnum}" th:value="${a.roleId}"></option>
-            </th:block>
-          </select></h1>
-      </div>
-      </div>
-      <div class="field">
-        <h1><label>                       </label></h1>
-      </div>
-      <div class="text-center p-3">
-        <button type="submit">Save</button>
-      </div>
-  </form>
+<div class="container text-center">
+  <h1><h6>Trip</h6></h1>
+</div>
+<form th:action="@{/driver/requestTripDto/save}" th:object="${requestTripDto}" method="post">
+  <input type="hidden" th:field="*{tripId}"/>
+  <div class="main">
+    <div class="field">
+      <h1><label>Distance: </label>
+        <input type="text" th:field="*{distanceKm}"/></h1>
+    </div>
+    <div class="field">
+      <h1><label>Finished: </label>
+        <input type="text" th:field="*{finished}"/></h1>
+    </div>
+    <div class="field">
+      <h1><label>Order: </label>
+        <select th:field="*{orders}">
+          <th:block th:each="a : ${ordersDtos}">
+            <option th:text="${a.termOfDelivery}" th:value="${a.orderId}"></option>
+          </th:block>
+        </select></h1>
+    </div>
+    <div class="field">
+      <h1><label>AutoBase: </label>
+        <select th:field="*{autoBase}">
+          <th:block th:each="a : ${autoBaseDtos}">
+            <option th:text="${a.nameOfOrganization}" th:value="${a.autoBaseId}"></option>
+          </th:block>
+        </select></h1>
+    </div>
+    <div class="field">
+      <h1><label>Dispatcher: </label>
+        <select th:field="*{dispatcher}">
+          <th:block th:each="a : ${dispatchers}">
+            <option th:text="${a.secondName}" th:value="${a.userId}"></option>
+          </th:block>
+        </select></h1>
+    </div>
+    <div class="field">
+      <h1><label>Driver: </label>
+        <select th:field="*{driver}">
+          <th:block th:each="a : ${drivers}">
+            <option th:text="${a.secondName}" th:value="${a.userId}"></option>
+          </th:block>
+        </select></h1>
+    </div>
+  </div>
+  <div class="field">
+    <h1><label> </label></h1>
+  </div>
+  <div class="text-center p-3">
+    <button type="submit" >Save</button>
+  </div>
+</form>
 <footer><a>
   Copyright Andrei Kapranov</a>
 </footer>
 </body>
 </html>
-

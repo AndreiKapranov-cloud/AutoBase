@@ -7,6 +7,7 @@ import com.andrei.myapp.exceptions.NameExistsException;
 import com.andrei.myapp.model.entity.Role;
 import com.andrei.myapp.model.entity.User;
 import com.andrei.myapp.model.enums.RolEnum;
+import com.andrei.myapp.model.enums.UserEnum;
 
 import java.util.List;
 
@@ -27,6 +28,10 @@ public interface UserDtoService {
 
     List<UserDto> getUsersByRoleRolEnum(RolEnum rolEnum);
 
-    List<UserDto> getUsersByRoleRolEnumAndAutosEmpty(RolEnum rolEnum);
+    List<UserDto> getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThan(UserEnum userStatus, int carryingCapacity);
+
+    List<UserDto> getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThanAndAuto_maxVolumeM3IsGreaterThan(UserEnum userStatus, int carryingCapacity, int volumeM3);
+
+    List<UserDto> getUsersByAuto_CarryingCapacityIsGreaterThan(int carryingCapacity);
 
 }

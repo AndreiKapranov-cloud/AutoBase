@@ -13,4 +13,5 @@ public class RequestAutoDto {
     private int maxVolumeM3;
     private Boolean technicalInspection;
     private String driver;
+    private int fuelConsumption;
 }

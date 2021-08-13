@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import com.andrei.myapp.model.entity.User;
-import com.andrei.myapp.model.enums.RoleConverter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

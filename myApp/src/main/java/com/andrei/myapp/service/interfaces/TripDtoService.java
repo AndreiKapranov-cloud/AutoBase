@@ -10,8 +10,12 @@ import java.util.List;
 
 public interface TripDtoService {
     List<TripDto> getAll();
-   Trip save(RequestTripDto requestTripDto);
-   RequestTripDto getTripByTripId(Long TripId);
-List<TripDto>getTripsByDriver(User driver);
-    List<TripDto>getTripsByDispatcher(User Dispatcher);
+
+    Trip save(RequestTripDto requestTripDto);
+
+    RequestTripDto getTripByTripId(Long TripId);
+
+    List<TripDto> getTripsByDriver(User driver);
+
+    List<TripDto> getTripsByDispatcher(User Dispatcher);
 }

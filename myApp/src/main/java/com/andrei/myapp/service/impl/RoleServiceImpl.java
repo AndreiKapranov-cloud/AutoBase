@@ -35,7 +35,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role save(Role role) {
+    public synchronized Role save(Role role) {
         return dao.save(role);
     }
 }

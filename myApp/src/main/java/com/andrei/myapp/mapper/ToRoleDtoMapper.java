@@ -12,8 +12,6 @@ import org.mapstruct.NullValueCheckStrategy;
 public interface ToRoleDtoMapper {
     @Mapping(target = "users", ignore = true)
     RoleDto roleToRoleDto(Role role);
-
-
     @Mappings({
             @Mapping(source = "rolEnum", target = "rolEnum"),
             @Mapping(target = "users", ignore = true)

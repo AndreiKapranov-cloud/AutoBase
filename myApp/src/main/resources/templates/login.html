@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <html xmls:th="http://thymeleaf.org" xmlns:xmls="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style> label {
+        float: left;
+        padding-right: 10px;
+    }
+
+    .field {
+
+        clear: both;
+        text-align: right;
+    }
+
+    .main {
+        float: left
+    }
+    h1 {
+        font-size: 10px;
+    }</style>
 </head>
 <body>
 <div th:if="${param.error}">Invalid username and password.</div>
 <div th:if="${param.logout}">You have been logged out.</div>
 <form th:action="@{/login}" method="post">
-    <div><label> User name : <input type="text" name="username"/></label></div>
-    <div><label> Password: <input type="password" name="password"/></label></div>
-<div><input type="submit" value="Sign in"/></div>
+    <div class="main">
+        <div class="field"><h1><label> User name : </label><input type="text" name="username"/></h1></div>
+        <div class="field"><h1><label> Password: </label><input type="password" name="password"/></h1></div>
+    </div>
+    <div class="field">
+        <h1><label> </label></h1>
+    </div>
+    <div><input type="submit" value="Sign in"/></div>
 </form>
 </body>
 </html>

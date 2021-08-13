@@ -55,7 +55,7 @@ public class RoleDtoServiceImpl implements RoleDtoService {
     }
     @Override
     @Transactional
-    public Role save(RoleDto roleDto) {
+    public synchronized Role save(RoleDto roleDto) {
         Role role =mapper.roleDtoToRole(roleDto);
         return dao.save(role);
     }

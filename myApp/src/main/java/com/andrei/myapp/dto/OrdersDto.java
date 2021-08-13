@@ -12,6 +12,8 @@ public class OrdersDto {
     private Long orderId;
     private Date termOfDelivery;
     private int weight;
+    private int volumeM3;
+    private String orderStatus;
     private String deliveryAddress;
     private List<TripDto> trips;
 

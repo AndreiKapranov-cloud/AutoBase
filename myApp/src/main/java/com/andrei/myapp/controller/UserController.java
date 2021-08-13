@@ -4,6 +4,7 @@ import com.andrei.myapp.dto.AutoBaseDto;
 import com.andrei.myapp.dto.RequestUserDto;
 import com.andrei.myapp.dto.RoleDto;
 import com.andrei.myapp.dto.UserDto;
+import com.andrei.myapp.model.enums.UserEnum;
 import com.andrei.myapp.service.interfaces.AutoBaseDtoService;
 import com.andrei.myapp.service.interfaces.RoleDtoService;
 import com.andrei.myapp.service.interfaces.UserDtoService;
@@ -32,15 +33,16 @@ public class UserController {
         this.roleDtoService = roleDtoService;
     }
 
-    @GetMapping("/userDtos")
+    @GetMapping("admin/userDtos")
     public String showUserList(Model model) {
-        List<UserDto> userDtos = userDtoService.getAll();
+        List<UserDto>userDtos = userDtoService.getAll();
+      //  List<UserDto> userDtos = userDtoService.getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThan(UserEnum.READY,6);
         model.addAttribute("userDtos", userDtos);
         return "userDtos";
     }
 
 
-    @GetMapping("/userDto/new")
+    @GetMapping("admin/userDto/new")
     public String showAddUserForm(Model model) {
         List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
         List<RoleDto> roleDtos = roleDtoService.getAll();
@@ -48,25 +50,24 @@ public class UserController {
         model.addAttribute("roleDtos", roleDtos);
         model.addAttribute("userDto", new UserDto());
         return "userDto_form";
-
     }
-
-    @PostMapping("userDto/save")
+    @PostMapping("/admin/userDto/save")
     public String saveUserDto(RequestUserDto requestUserDto) {
         userDtoService.save(requestUserDto);
         return "redirect:/";
     }
 
-    @GetMapping("/userDtos/edit/{userId}")
+    @GetMapping("/admin/userDtos/edit/{userId}")
     public String showEditUserForm(@PathVariable("userId") Long userId, Model model) {
         UserDto userDto = userDtoService.getUserById(userId);
         model.addAttribute("userDto", userDto);
         List<RoleDto> roleDtos = roleDtoService.getAll();
         model.addAttribute("roleDtos", roleDtos);
-        return "edit_userDto_form";
+        return "userDto_form";
 
     }
-    @PostMapping("userDto/saveWhenEdit")
+
+    @PostMapping("admin/userDto/saveWhenEdit")
     public String saveWhenEditUserDto(RequestUserDto requestUserDto) {
         userDtoService.saveWhenEdit(requestUserDto);
         return "redirect:/";

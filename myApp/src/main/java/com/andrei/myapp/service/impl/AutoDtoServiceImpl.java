@@ -101,7 +101,7 @@ public class AutoDtoServiceImpl implements AutoDtoService {
 
     @Override
     @Transactional
-    public Auto save(RequestAutoDto requestAutoDto) {
+    public synchronized Auto save(RequestAutoDto requestAutoDto) {
         Auto auto = autoToRequestAutoDtoMapper.requestAutoDtoToAuto(requestAutoDto);
         return dao.save(auto);
     }

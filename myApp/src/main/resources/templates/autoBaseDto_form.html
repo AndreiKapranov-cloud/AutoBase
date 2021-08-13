@@ -118,7 +118,7 @@
 
 <div class="container text-center" th:if="${autoBaseDto.autoBaseId==null}"><p><h6>Create New AutoBase</h6></p></div>
 <div class="container text-center" th:unless="${autoBaseDto.autoBaseId==null}"><p><h6>Edit AutoBase</h6></p></div>
-<form th:action="@{/autoBaseDto/save}" th:object="${autoBaseDto}" method="post">
+<form th:action="@{/admin/autoBaseDto/save}" th:object="${autoBaseDto}" method="post">
     <input type="hidden" th:field="*{autoBaseId}"/>
     <div class="main">
         <div class="field">

@@ -1,5 +1,7 @@
 package com.andrei.myapp.model.entity;
 
+import com.andrei.myapp.model.enums.RolEnum;
+import com.andrei.myapp.model.enums.UserEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -29,10 +31,15 @@ public class User {
     private Date createDate;
     @Column(name = "user_second_name")
     private String secondName;
-    @Column(name = "ready")
-    private Boolean ready;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "driver", cascade = CascadeType.ALL)
-    private List<Auto> autos;
+    @Column(name = "status")
+    private UserEnum userStatus;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_auto",
+            joinColumns =
+                    { @JoinColumn(name = "user_id", referencedColumnName = "user_id") },
+            inverseJoinColumns =
+                    { @JoinColumn(name = "auto_id", referencedColumnName = "auto_id") })
+    private Auto auto;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;

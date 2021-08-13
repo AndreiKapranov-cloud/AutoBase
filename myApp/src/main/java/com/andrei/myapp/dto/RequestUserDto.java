@@ -14,9 +14,9 @@ public class RequestUserDto {
     private String password;
     private String createDate;
     private String secondName;
-    private Boolean ready;
+    private String userStatus;
     private String role;
-    private List<AutoDto> autos;
+    private String auto;
     private List<TripDto> dispatchersTrips;
     private List<TripDto> driversTrips;
 }

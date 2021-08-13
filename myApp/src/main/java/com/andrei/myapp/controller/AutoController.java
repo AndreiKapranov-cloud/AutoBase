@@ -25,31 +25,31 @@ public class AutoController {
         this.userDtoService = userDtoService;
     }
 
-    @GetMapping("/autoDtos")
+    @GetMapping("admin/autoDtos")
     public String showAutoList(Model model) {
         List<AutoDto> autoDtos = autoDtoService.getAll();
         model.addAttribute("autoDtos", autoDtos);
         return "autoDtos";
     }
 
-    @GetMapping("/autoDto/new")
+    @GetMapping("admin/autoDto/new")
     public String showAddAutoForm(Model model) {
-        List<UserDto> drivers = userDtoService.getUsersByRoleRolEnumAndAutosEmpty(RolEnum.DRIVER);
+        List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
         model.addAttribute("autoDto", new AutoDto());
         model.addAttribute("drivers", drivers);
         return "autoDto_form";
     }
 
-    @PostMapping("/autoDto/save")
+    @PostMapping("admin/autoDto/save")
     public String saveAuto(RequestAutoDto requestAutoDto) {
         autoDtoService.save(requestAutoDto);
         return "redirect:/";
     }
 
-    @GetMapping("/autoDtos/edit/{autoId}")
+    @GetMapping("admin/autoDtos/edit/{autoId}")
     public String showEditAutoForm(@PathVariable("autoId") Long autoId, Model model) {
         AutoDto autoDto = autoDtoService.getAutoByAutoId(autoId);
-        List<UserDto> drivers = userDtoService.getUsersByRoleRolEnumAndAutosEmpty(RolEnum.DRIVER);;
+        List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);;
         model.addAttribute("drivers",drivers);
         model.addAttribute("autoDto", autoDto);
         return "autoDto_form";

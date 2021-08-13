@@ -13,5 +13,5 @@ public class AutoDto {
     private int maxVolumeM3;
     private Boolean technicalInspection;
     private UserDto driver;
-
+    private int fuelConsumption;
 }
