@@ -13,6 +13,10 @@ import java.util.List;
 public interface UserDao extends JpaRepository<User, Long> {
     User getUserByUserName(String userName);
 
+    User getUserByLogin(String login);
+
+    List<User> findAll();
+
     List<User> getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThan(UserEnum userStatus, int carryingCapacity);
 
     List<User> getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThanAndAuto_maxVolumeM3IsGreaterThan(UserEnum userStatus, int carryingCapacity, int volumeM3);

@@ -27,6 +27,7 @@ public class UserToRequestUserDtoMapperImpl {
         requestUserDto.setPassword(user.getPassword());
         requestUserDto.setCreateDate(String.valueOf(user.getCreateDate()));
         requestUserDto.setSecondName(user.getSecondName());
+        requestUserDto.setLogin(user.getLogin());
         requestUserDto.setUserStatus(userEnumConverter.convertToDatabaseColumn(user.getUserStatus()));
         requestUserDto.setRole(String.valueOf((user.getRole()).getRoleId()));
         requestUserDto.setAuto(String.valueOf((user.getAuto()).getAutoId()));
@@ -41,6 +42,7 @@ public class UserToRequestUserDtoMapperImpl {
         user.setPassword(requestUserDto.getPassword());
         user.setCreateDate(Date.valueOf(requestUserDto.getCreateDate()));
         user.setSecondName(requestUserDto.getSecondName());
+        user.setLogin(requestUserDto.getLogin());
         user.setUserStatus(userEnumConverter.convertToEntityAttribute(requestUserDto.getUserStatus()));
         user.setRole(roleService.getRoleByRoleId(Long.valueOf(requestUserDto.getRole())));
         user.setAuto(autoService.getAutoByAutoId(Long.valueOf(requestUserDto.getAuto())));

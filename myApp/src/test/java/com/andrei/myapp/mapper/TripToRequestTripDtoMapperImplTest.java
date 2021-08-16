@@ -73,7 +73,6 @@ public class TripToRequestTripDtoMapperImplTest {
         requestTripDto.setTripId(1L);
         requestTripDto.setDistanceKm(54);
         requestTripDto.setTripStatus("stopped");
-        requestTripDto.setFuelLitres(50);
         requestTripDto.setOrders("3");
         requestTripDto.setAutoBase("2");
         requestTripDto.setDispatcher("1");
@@ -84,7 +83,6 @@ public class TripToRequestTripDtoMapperImplTest {
         assertEquals(requestTripDto.getTripId(), trip.getTripId());
         assertEquals(requestTripDto.getDistanceKm(), trip.getDistanceKm());
         assertEquals(requestTripDto.getTripStatus(), tripEnumConverter.convertToDatabaseColumn(trip.getTripStatus()));
-        assertEquals(requestTripDto.getFuelLitres(), trip.getFuelLitres());
         assertEquals(orderService.getOrdersByOrderId(Long.valueOf(requestTripDto.getOrders())), trip.getOrders());
         assertEquals(autoBaseService.getAutoBaseByAutoBaseId(Long.valueOf(requestTripDto.getAutoBase())),
                 trip.getAutoBase());
@@ -99,7 +97,6 @@ public class TripToRequestTripDtoMapperImplTest {
 
         trip.setDistanceKm(25);
         trip.setTripStatus(TripEnum.WAITING);
-        trip.setFuelLitres(10);
         trip.setOrders(orderService.getOrdersByOrderId(orderId));
         trip.setAutoBase(autoBaseService.getAutoBaseByAutoBaseId(autoBaseId));
         trip.setDispatcher(userService.getUserById(dispatcherId));
@@ -108,7 +105,6 @@ public class TripToRequestTripDtoMapperImplTest {
         RequestTripDto requestTripDto = mapper.tripToRequestTripDto(trip);
         assertEquals(trip.getDistanceKm(), requestTripDto.getDistanceKm());
         assertEquals(trip.getTripStatus(), tripEnumConverter.convertToEntityAttribute(requestTripDto.getTripStatus()));
-        assertEquals(trip.getFuelLitres(), requestTripDto.getFuelLitres());
         assertEquals(trip.getOrders(), orderService.getOrdersByOrderId(Long.valueOf(requestTripDto.getOrders())));
         assertEquals(trip.getAutoBase(), autoBaseService.getAutoBaseByAutoBaseId(Long.valueOf(requestTripDto.
                 getAutoBase())));

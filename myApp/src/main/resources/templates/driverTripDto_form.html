@@ -116,22 +116,16 @@
 <form th:action="@{/driver/requestTripDto/save}" th:object="${requestTripDto}" method="post">
   <input type="hidden" th:field="*{tripId}"/>
   <div class="main">
-    <div class="field">
-      <h1><label>Distance: </label>
-        <input type="text" th:field="*{distanceKm}"/></h1>
-    </div>
-    <div class="field">
-      <h1><label>Finished: </label>
-        <input type="text" th:field="*{finished}"/></h1>
-    </div>
-    <div class="field">
+
+
+  <!--  <div class="field">
       <h1><label>Order: </label>
         <select th:field="*{orders}">
           <th:block th:each="a : ${ordersDtos}">
             <option th:text="${a.termOfDelivery}" th:value="${a.orderId}"></option>
           </th:block>
         </select></h1>
-    </div>
+    </div>-->
     <div class="field">
       <h1><label>AutoBase: </label>
         <select th:field="*{autoBase}">
@@ -139,7 +133,7 @@
             <option th:text="${a.nameOfOrganization}" th:value="${a.autoBaseId}"></option>
           </th:block>
         </select></h1>
-    </div>
+   <!-- </div>
     <div class="field">
       <h1><label>Dispatcher: </label>
         <select th:field="*{dispatcher}">
@@ -147,7 +141,7 @@
             <option th:text="${a.secondName}" th:value="${a.userId}"></option>
           </th:block>
         </select></h1>
-    </div>
+    </div>-->
     <div class="field">
       <h1><label>Driver: </label>
         <select th:field="*{driver}">

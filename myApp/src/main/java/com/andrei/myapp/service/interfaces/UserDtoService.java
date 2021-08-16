@@ -16,6 +16,8 @@ public interface UserDtoService {
 
     List<UserDto> getAll();
 
+    UserDto getUserByLogin(String login);
+
     UserDto getUserByUserEmail(String userEmail);
 
     User save(RequestUserDto requestUserDto) throws EmailExistsException, NameExistsException;

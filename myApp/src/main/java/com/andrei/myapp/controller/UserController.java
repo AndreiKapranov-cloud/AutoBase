@@ -1,13 +1,12 @@
 package com.andrei.myapp.controller;
 
-import com.andrei.myapp.dto.AutoBaseDto;
-import com.andrei.myapp.dto.RequestUserDto;
-import com.andrei.myapp.dto.RoleDto;
-import com.andrei.myapp.dto.UserDto;
+import com.andrei.myapp.dto.*;
 import com.andrei.myapp.model.enums.UserEnum;
 import com.andrei.myapp.service.interfaces.AutoBaseDtoService;
+import com.andrei.myapp.service.interfaces.AutoDtoService;
 import com.andrei.myapp.service.interfaces.RoleDtoService;
 import com.andrei.myapp.service.interfaces.UserDtoService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,24 +18,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
-
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private final UserDtoService userDtoService;
     private final AutoBaseDtoService autoBaseDtoService;
     private final RoleDtoService roleDtoService;
-
-    public UserController(UserDtoService userDtoService, AutoBaseDtoService autoBaseDtoService, RoleDtoService roleDtoService) {
-        this.userDtoService = userDtoService;
-        this.autoBaseDtoService = autoBaseDtoService;
-        this.roleDtoService = roleDtoService;
-    }
+    private final AutoDtoService autoDtoService;
 
     @GetMapping("admin/userDtos")
     public String showUserList(Model model) {
-        List<UserDto>userDtos = userDtoService.getAll();
-      //  List<UserDto> userDtos = userDtoService.getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThan(UserEnum.READY,6);
+        List<UserDto> userDtos = userDtoService.getAll();
+        //  List<UserDto> userDtos = userDtoService.getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThan(UserEnum.READY,6);
         model.addAttribute("userDtos", userDtos);
         return "userDtos";
     }
@@ -51,6 +45,7 @@ public class UserController {
         model.addAttribute("userDto", new UserDto());
         return "userDto_form";
     }
+
     @PostMapping("/admin/userDto/save")
     public String saveUserDto(RequestUserDto requestUserDto) {
         userDtoService.save(requestUserDto);
@@ -60,9 +55,11 @@ public class UserController {
     @GetMapping("/admin/userDtos/edit/{userId}")
     public String showEditUserForm(@PathVariable("userId") Long userId, Model model) {
         UserDto userDto = userDtoService.getUserById(userId);
-        model.addAttribute("userDto", userDto);
         List<RoleDto> roleDtos = roleDtoService.getAll();
+        List<AutoDto> autoDtos = autoDtoService.getAutosByTechnicalInspection(true);
+        model.addAttribute("userDto", userDto);
         model.addAttribute("roleDtos", roleDtos);
+        model.addAttribute("autoDtos", autoDtos);
         return "userDto_form";
 
     }
@@ -72,12 +69,19 @@ public class UserController {
         userDtoService.saveWhenEdit(requestUserDto);
         return "redirect:/";
     }
+
     @GetMapping("/dispatcher")
-    public String redirect(Model model){
+    public String redirect(Model model) {
         return "dispatcher";
     }
+
     @GetMapping("/driver")
-    public String redirectt(Model model){
+    public String redirectt(Model model) {
         return "driver";
+    }
+
+    @GetMapping("/admin/google")
+    public String showGoogleForm(Model model) {
+        return "google";
     }
 }

@@ -17,6 +17,7 @@ public class UserDto {
     private String password;
     private Date createDate;
     private String secondName;
+    private String login;
     private RoleDto role;
     private AutoDto auto;
     private List<TripDto> dispatchersTrips;

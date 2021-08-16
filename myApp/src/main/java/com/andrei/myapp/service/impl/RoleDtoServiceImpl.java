@@ -6,6 +6,7 @@ import com.andrei.myapp.model.dao.RoleDao;
 import com.andrei.myapp.model.entity.Role;
 import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.service.interfaces.RoleDtoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,16 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RoleDtoServiceImpl implements RoleDtoService {
 
 
     private final RoleDao dao;
     private final ToRoleDtoMapper mapper;
-
-    public RoleDtoServiceImpl(RoleDao dao, ToRoleDtoMapper mapper) {
-        this.dao = dao;
-        this.mapper = mapper;
-    }
 
    /* @Override
     public List<UserRole> getAll() {

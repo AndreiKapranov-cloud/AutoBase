@@ -20,8 +20,6 @@ public class Trip {
     private int distanceKm;
     @Column(name = "status")
     private TripEnum tripStatus;
-    @Column(name = "fuel_litres")
-    private int fuelLitres;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Orders orders;

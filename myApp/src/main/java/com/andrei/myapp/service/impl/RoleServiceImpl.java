@@ -4,20 +4,16 @@ import com.andrei.myapp.model.dao.RoleDao;
 import com.andrei.myapp.model.entity.Role;
 import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.service.interfaces.RoleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
 
-
     private final RoleDao dao;
-
-
-    public RoleServiceImpl(RoleDao dao) {
-        this.dao = dao;
-    }
 
     @Override
     public List<Role> getAll() {

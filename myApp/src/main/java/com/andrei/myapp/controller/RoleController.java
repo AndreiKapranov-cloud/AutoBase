@@ -3,23 +3,17 @@ package com.andrei.myapp.controller;
 import com.andrei.myapp.service.interfaces.RoleDtoService;
 import com.andrei.myapp.service.interfaces.TripDtoService;
 import com.andrei.myapp.service.interfaces.UserDtoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class RoleController {
     private final RoleDtoService roleDtoService;
     private final UserDtoService userDtoService;
     private final TripDtoService tripDtoService;
-
-
-    public RoleController(RoleDtoService roleDtoService, UserDtoService userDtoService, TripDtoService tripDtoService) {
-
-        this.roleDtoService = roleDtoService;
-        this.userDtoService = userDtoService;
-        this.tripDtoService = tripDtoService;
-    }
 
     @GetMapping("admin/roleDtos")
     public String showRoleList(Model model) {

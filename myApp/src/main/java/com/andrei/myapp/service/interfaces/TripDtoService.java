@@ -11,7 +11,15 @@ import java.util.List;
 public interface TripDtoService {
     List<TripDto> getAll();
 
+    String tripDispatcherHelper();
+
+    long tripGetDistanceKm(Long orderId) throws Exception;
+
+    String tripOrderHelper(Long orderId);
+
     Trip save(RequestTripDto requestTripDto);
+
+    List<UserDto> tripDriversHelper(Long orderId);
 
     RequestTripDto getTripByTripId(Long TripId);
 

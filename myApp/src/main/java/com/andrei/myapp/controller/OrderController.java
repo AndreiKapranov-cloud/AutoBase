@@ -4,6 +4,7 @@ import com.andrei.myapp.dto.*;
 import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.model.enums.UserEnum;
 import com.andrei.myapp.service.interfaces.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class OrderController {
     private final OrderDtoService orderDtoService;
     private final UserService userService;
@@ -20,17 +22,7 @@ public class OrderController {
     private final AutoBaseDtoService autoBaseDtoService;
     private final RoleDtoService roleDtoService;
     private final AutoDtoService autoDtoService;
-
     private final TripDtoService tripDtoService;
-    public OrderController(OrderDtoService orderDtoService, UserService userService, UserDtoService userDtoService, AutoBaseDtoService autoBaseDtoService, RoleDtoService roleDtoService, AutoDtoService autoDtoService, TripDtoService tripDtoService) {
-        this.orderDtoService = orderDtoService;
-        this.userService = userService;
-        this.userDtoService = userDtoService;
-        this.autoBaseDtoService = autoBaseDtoService;
-        this.roleDtoService = roleDtoService;
-        this.autoDtoService = autoDtoService;
-        this.tripDtoService = tripDtoService;
-    }
 
     @GetMapping("admin/orderDtos")
     public String showOrderList(Model model) {
@@ -38,9 +30,6 @@ public class OrderController {
         model.addAttribute("orderDtos", orderDtos);
         return "orderDtos";
     }
-
-
-
 
     @GetMapping("/admin/orderDto/new")
     public String showAddOdrerForm(Model model) {

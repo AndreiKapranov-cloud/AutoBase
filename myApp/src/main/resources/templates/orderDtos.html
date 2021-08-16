@@ -101,7 +101,7 @@
                     <td>[[${orderDto.deliveryAddress}]]</td>
                     <td><a th:href="@{'orderDtos/edit/' +${orderDto.orderId}}">
                         Edit</a></td>
-                    <td><a th:href="@{'/admin/requestTripDtoByOrder/new/' +${orderDto.orderId}}">
+                    <td><a th:href="@{'/dispatcher/requestTripDtoByOrder/new/' +${orderDto.orderId}}">
                         Create Trip</a></td>
 
                 </tr>

@@ -14,6 +14,8 @@ import com.andrei.myapp.model.enums.UserEnum;
 import com.andrei.myapp.service.interfaces.RoleDtoService;
 import com.andrei.myapp.service.interfaces.UserDtoService;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,28 +29,24 @@ import java.util.*;
 
 
 @Service
+@RequiredArgsConstructor
 public class UserDtoServiceImpl implements UserDtoService {
-    //  private final PasswordEncoder passwordEncoder;
-
+    private final PasswordEncoder passwordEncoder;
     private final RoleDtoService roleDtoService;
     private final UserDao dao;
     private final ToUserDtoMapper mapper;
     private final UserToRequestUserDtoMapperImpl userToRequestUserDtoMapper;
 
-    public UserDtoServiceImpl(RoleDtoService roleDtoService, UserDao dao,
-                              ToUserDtoMapper mapper, UserToRequestUserDtoMapperImpl userToRequestUserDtoMapper) {
-        //   this.passwordEncoder = passwordEncoder;
-        this.roleDtoService = roleDtoService;
-        this.dao = dao;
-        this.mapper = mapper;
-        this.userToRequestUserDtoMapper = userToRequestUserDtoMapper;
-    }
-
     @Override
     public UserDto getUserByUsername(String userName) {
         User user = dao.getUserByUserName(userName);
-        UserDto userDto = mapper.userToUserDto(user);
-        return userDto;
+        return mapper.userToUserDto(user);
+    }
+
+    @Override
+    public UserDto getUserByLogin(String login) {
+        User user = dao.getUserByLogin(login);
+        return mapper.userToUserDto(user);
     }
 
     @Override
@@ -65,8 +63,7 @@ public class UserDtoServiceImpl implements UserDtoService {
     @Override
     public UserDto getUserByUserEmail(String userEmail) {
         User user = dao.getUserByUserEmail(userEmail);
-        UserDto userDto = mapper.userToUserDto(user);
-        return userDto;
+        return mapper.userToUserDto(user);
     }
 
     @Transactional
@@ -77,7 +74,7 @@ public class UserDtoServiceImpl implements UserDtoService {
 
     @Override
     @Transactional
-    public synchronized User save(RequestUserDto requestUserDto) throws NameExistsException, EmailExistsException {
+    public User save(RequestUserDto requestUserDto) throws NameExistsException, EmailExistsException {
       /*  if (nameExists(requestUserDto.getUserName())) {
             throw new NameExistsException("There is an account with that name:"
                     + requestUserDto.getUserName());
@@ -102,8 +99,7 @@ public class UserDtoServiceImpl implements UserDtoService {
     @Override
     public UserDto getUserById(Long userId) {
         User user = dao.getUserByUserId(userId);
-        UserDto userDto = mapper.userToUserDto(user);
-        return userDto;
+        return mapper.userToUserDto(user);
     }
 
     @Override

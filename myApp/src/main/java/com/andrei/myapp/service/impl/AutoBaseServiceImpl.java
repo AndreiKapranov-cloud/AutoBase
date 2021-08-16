@@ -3,18 +3,14 @@ package com.andrei.myapp.service.impl;
 import com.andrei.myapp.model.dao.AutoBaseDao;
 import com.andrei.myapp.model.entity.AutoBase;
 import com.andrei.myapp.service.interfaces.AutoBaseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@RequiredArgsConstructor
 public class AutoBaseServiceImpl implements AutoBaseService {
     private final AutoBaseDao dao;
-
-
-    public AutoBaseServiceImpl(AutoBaseDao dao) {
-        this.dao = dao;
-
-    }
 
     @Override
     public List<AutoBase> getAll() {

@@ -153,6 +153,13 @@
                     </th:block>
                 </select></h1>
         </div>
+        <div class="field">
+            <h1><label>Status </label>
+                <select name="tripStatus">
+                    <option th:each="tripStatus : ${T(com.andrei.myapp.model.enums.TripEnum).values()}"
+                            th:value="${tripStatus.getCode}" th:text="${tripStatus}"></option>
+                </select></h1>
+        </div>
     </div>
     <div class="field">
         <h1><label> </label></h1>

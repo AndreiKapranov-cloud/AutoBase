@@ -24,8 +24,6 @@ public class Auto {
     private int maxVolumeM3;
     @Column(name = "technical_inspection", nullable = false)
     private Boolean technicalInspection;
-    @Column(name = "fuel_consumptionL_100Km")
-    private int fuelConsumption;
     @OneToOne(mappedBy = "auto")
     private User driver;
 

@@ -5,6 +5,7 @@ import com.andrei.myapp.mapper.ToAutoBaseDtoMapper;
 import com.andrei.myapp.model.dao.AutoBaseDao;
 import com.andrei.myapp.model.entity.AutoBase;
 import com.andrei.myapp.service.interfaces.AutoBaseDtoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,15 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AutoBaseDtoServiceImpl implements AutoBaseDtoService {
 
     private final AutoBaseDao dao;
     private final ToAutoBaseDtoMapper mapper;
-
-    public AutoBaseDtoServiceImpl(AutoBaseDao dao, ToAutoBaseDtoMapper mapper) {
-        this.dao = dao;
-        this.mapper = mapper;
-    }
 
     @Override
     public List<AutoBaseDto> getAll() {

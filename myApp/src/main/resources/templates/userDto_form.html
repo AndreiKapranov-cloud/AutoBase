@@ -7,113 +7,115 @@
     <meta charset="ISO-8859-1">
     <title>Create New User</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.c}"/>
-    <style>  body, html {
-        height: 100%;
-    }
+    <style>
+        body, html {
+            height: 100%;
+        }
 
-    /* The hero image */
-    .hero-image {
-        /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://s1.1zoom.ru/big0/629/Sunrises_and_sunsets_Trucks_Retro_Grass_Old_Side_605279_1280x844.jpg");
+        /* The hero image */
+        .hero-image {
+            /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://s1.1zoom.ru/big0/629/Sunrises_and_sunsets_Trucks_Retro_Grass_Old_Side_605279_1280x844.jpg");
 
-        /* Set a specific height */
-        height: 50%;
+            /* Set a specific height */
+            height: 50%;
 
-        /* Position and center the image to scale nicely on all screens */
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-    }
+            /* Position and center the image to scale nicely on all screens */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
 
-    /* Place text in the middle of the image */
-    .hero-text {
-        text-align: right;
-        position: absolute;
-        top: 50%;
-        left: 80%;
-        transform: translate(-50%, -50%);
-        color: white;
-    }
-    A {
-        text-decoration: none;
-    }
+        /* Place text in the middle of the image */
+        .hero-text {
+            text-align: right;
+            position: absolute;
+            top: 50%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
 
-    a {
-        font-size: 70%;
-    }
+        A {
+            text-decoration: none;
+        }
 
-    h1 {
-        font-size: 10px;
-    }
+        a {
+            font-size: 70%;
+        }
 
-    td {
-        font-size: 10px;
-    }
+        h1 {
+            font-size: 10px;
+        }
 
-    button {
-        border-radius: 4px;
-        background-color: #555050;
-        border: none;
-        color: #fff;
-        text-align: center;
-        font-size: 9px;
-        padding: 16px;
-        width: 170px;
-        transition: all 0.5s;
-        cursor: pointer;
-        margin: 1px;
-        box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
-    }
+        td {
+            font-size: 10px;
+        }
 
-    button {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-    }
+        button {
+            border-radius: 4px;
+            background-color: #555050;
+            border: none;
+            color: #fff;
+            text-align: center;
+            font-size: 9px;
+            padding: 16px;
+            width: 170px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 1px;
+            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+        }
 
-    button:after {
-        content: '>>';
-        position: absolute;
-        opacity: 0;
-        top: 14px;
-        right: -20px;
-        transition: 0.5s;
-    }
+        button {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
 
-    button:hover {
-        padding-right: 24px;
-        padding-left: 8px;
-    }
+        button:after {
+            content: '>>';
+            position: absolute;
+            opacity: 0;
+            top: 14px;
+            right: -20px;
+            transition: 0.5s;
+        }
 
-    button:hover:after {
-        opacity: 1;
-        right: 10px;
-    }
+        button:hover {
+            padding-right: 24px;
+            padding-left: 8px;
+        }
 
-    A {
-        text-decoration: none;
-    }
+        button:hover:after {
+            opacity: 1;
+            right: 10px;
+        }
 
-    a {
-        font-size: 70%;
-    }
+        A {
+            text-decoration: none;
+        }
 
-    label {
-        float: left;
-        padding-right: 10px;
-    }
+        a {
+            font-size: 70%;
+        }
 
-    .field {
+        label {
+            float: left;
+            padding-right: 10px;
+        }
 
-        clear: both;
-        text-align: right;
-    }
+        .field {
 
-    .main {
-        float: left
-    }
+            clear: both;
+            text-align: right;
+        }
+
+        .main {
+            float: left
+        }
     </style>
 </head>
 <body>
@@ -150,10 +152,29 @@
                 <input type="text" th:field="*{createDate}"/></h1>
         </div>
         <div class="field">
+            <h1><label>Login: </label>
+                <input type="text" th:field="*{login}"/></h1>
+        </div>
+        <div class="field">
+            <h1><label>Status </label>
+                <select name="userStatus: ">
+                    <option th:each="userStatus : ${T(com.andrei.myapp.model.enums.UserEnum).values()}"
+                            th:value="${userStatus.getCode}" th:text="${userStatus}"></option>
+                </select></h1>
+        </div>
+        <div class="field">
             <h1><label>Role: </label>
                 <select th:field="*{role}">
                     <th:block th:each="a : ${roleDtos}">
                         <option th:text="${a.rolEnum}" th:value="${a.roleId}"></option>
+                    </th:block>
+                </select></h1>
+        </div>
+        <div class="field">
+            <h1><label>Auto: </label>
+                <select th:field="*{auto}">
+                    <th:block th:each="a : ${autoDtos}">
+                        <option th:text="${a.number}" th:value="${a.autoId}"></option>
                     </th:block>
                 </select></h1>
         </div>

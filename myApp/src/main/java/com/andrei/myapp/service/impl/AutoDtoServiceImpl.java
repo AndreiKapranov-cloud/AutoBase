@@ -7,6 +7,7 @@ import com.andrei.myapp.mapper.ToAutoDtoMapper;
 import com.andrei.myapp.model.dao.AutoDao;
 import com.andrei.myapp.model.entity.Auto;
 import com.andrei.myapp.service.interfaces.AutoDtoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,16 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AutoDtoServiceImpl implements AutoDtoService {
 
     private final AutoDao dao;
     private final ToAutoDtoMapper mapper;
     private final AutoToRequestAutoDtoMapper autoToRequestAutoDtoMapper;
-    public AutoDtoServiceImpl(AutoDao dao, ToAutoDtoMapper mapper, AutoToRequestAutoDtoMapper autoToRequestAutoDtoMapper) {
-        this.dao = dao;
-        this.mapper = mapper;
-        this.autoToRequestAutoDtoMapper = autoToRequestAutoDtoMapper;
-    }
 
     @Override
     public List<AutoDto> getAll() {
@@ -89,7 +86,7 @@ public class AutoDtoServiceImpl implements AutoDtoService {
     }
 
     @Override
-    public List<AutoDto> getAutosByTechnicalInspection(String technicalInspection) {
+    public List<AutoDto> getAutosByTechnicalInspection(Boolean technicalInspection) {
         List<Auto> autos = dao.getAutosByTechnicalInspection(technicalInspection);
         List<AutoDto> autoDtos = new ArrayList<>();
         autos.forEach(auto -> {

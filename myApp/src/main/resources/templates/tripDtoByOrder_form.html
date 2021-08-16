@@ -79,9 +79,11 @@
         opacity: 1;
         right: 10px;
     }
+
     h1 {
         font-size: 10px;
     }
+
     a {
         font-size: 70%;
     }
@@ -113,13 +115,34 @@
 <div class="container text-center">
     <h1><h6>Trip</h6></h1>
 </div>
-<form th:action="@{/admin/requestTripDto/save}" th:object="${requestTripDto}" method="post">
+<form th:action="@{/dispatcher/requestTripDto/save}" th:object="${requestTripDto}" method="post">
     <input type="hidden" th:field="*{tripId}"/>
     <div class="main">
+       <!-- <div class="field">
+            <h1><label for="distanceKm">Distance:</label>
+                <input type="text" id="distanceKm" th:value="${distanceKm}" readonly></h1>
+        </div>-->
         <div class="field">
-            <h1><label>Distance: </label>
-                <input type="text" th:field="*{distanceKm}"/></h1>
+       <h1> <label for="distanceKm">Distance:</label>
+        <input type="text" id="distanceKm" name="distanceKm" th:value="${distanceKm}" readonly></h1>
         </div>
+        <div class="field">
+            <h1> <label for="orders">Order: </label>
+                <input type="text" id="orders" name="orders" th:value="${orders}" readonly></h1>
+        </div>
+        <div class="field">
+            <h1> <label for="dispatcher">Dispatcher: </label>
+                <input type="text" id="dispatcher" name="dispatcher" th:value="${dispatcher}" readonly></h1>
+        </div>
+        <div class="field">
+            <h1> <label for="tripStatus">Status: </label>
+                <input type="text" id="tripStatus" name="tripStatus" th:value="${tripStatus}" readonly></h1>
+        </div>
+       <!-- <div class="field">
+            <h1><label for="dispatcher">Dispatcher: </label>
+                <input type="text" id="dispatcher" th:value="${dispatcher}" readonly></h1>
+        </div>-->
+
         <div class="field">
             <h1><label>AutoBase: </label>
                 <select th:field="*{autoBase}">
@@ -128,29 +151,52 @@
                     </th:block>
                 </select></h1>
         </div>
-        <div class="field">
-            <h1><label>Dispatcher: </label>
-                <select th:field="*{dispatcher}">
-                    <th:block th:each="a : ${dispatchers}">
-                        <option th:text="${a.secondName}" th:value="${a.userId}"></option>
+        <!--  <div class="field">
+              <h1><label>Order: </label>
+                  <select th:field="*{orders}">
+                      <th:block th:each="a : ${ordersDtos}">
+                          <option th:text="${a.deliveryAddress}" th:value="${a.orderId}"></option>
+                      </th:block>
+                  </select></h1>
+          </div>-->
+       <!-- <div class="field">
+            <h1><label>Order: </label>
+                <select th:field="*{orders}">
+                    <th:block th:each="a : ${ordersDtos}">
+                        <option th:text="${a.termOfDelivery}" th:value="${a.orderId}"></option>
                     </th:block>
                 </select></h1>
+        </div>-->
+        <!-- <div class="field">
+             <h1><label>Dispatcher: </label>
+                 <select th:field="*{dispatcher}">
+                     <th:block th:each="a : ${dispatchers}">
+                         <option th:text="${a.secondName}" th:value="${a.userId}"></option>
+                     </th:block>
+                 </select></h1>-->
+          <!--  <div class="field">
+                <h1><label>Status: </label>
+                    <select name="tripStatus">
+                        <option th:each="tripStatus : ${T(com.andrei.myapp.model.enums.TripEnum).values()}"
+                                th:value="${tripStatus.getCode}" th:text="${tripStatus}"></option>
+                    </select></h1>
+            </div>-->
+            <div class="field">
+                <h1><label>Driver: </label>
+                    <select th:field="*{driver}">
+                        <th:block th:each="a : ${drivers}">
+                            <option th:text="${a.secondName}" th:value="${a.userId}"></option>
+                        </th:block>
+                    </select></h1>
+            </div>
         </div>
+    </div>
         <div class="field">
-            <h1><label>Driver: </label>
-                <select th:field="*{driver}">
-                    <th:block th:each="a : ${drivers}">
-                        <option th:text="${a.secondName}" th:value="${a.userId}"></option>
-                    </th:block>
-                </select></h1>
+            <h1><label> </label></h1>
         </div>
-    </div>
-    <div class="field">
-        <h1><label> </label></h1>
-    </div>
-    <div class="text-center p-3">
-        <button type="submit" >Save</button>
-    </div>
+        <div class="text-center p-3">
+            <button type="submit">Save</button>
+        </div>
 </form>
 <footer><a>
     Copyright Andrei Kapranov</a>

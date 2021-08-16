@@ -5,6 +5,7 @@ import com.andrei.myapp.mapper.ToOrdersDtoMapper;
 import com.andrei.myapp.model.dao.OrderDao;
 import com.andrei.myapp.model.entity.Orders;
 import com.andrei.myapp.service.interfaces.OrderDtoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,15 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OrderDtoServiceImpl implements OrderDtoService {
     private final OrderDao dao;
     private final ToOrdersDtoMapper mapper;
-
-    public OrderDtoServiceImpl(OrderDao dao, ToOrdersDtoMapper mapper) {
-        this.dao = dao;
-
-        this.mapper = mapper;
-    }
 
     @Override
     public List<OrdersDto> getAll() {

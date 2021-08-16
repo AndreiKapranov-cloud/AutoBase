@@ -7,6 +7,7 @@ import com.andrei.myapp.dto.UserDto;
 import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.service.interfaces.AutoDtoService;
 import com.andrei.myapp.service.interfaces.UserDtoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class AutoController {
     private final AutoDtoService autoDtoService;
     private final UserDtoService userDtoService;
-
-    public AutoController(AutoDtoService autoDtoService, UserDtoService userDtoService) {
-        this.autoDtoService = autoDtoService;
-        this.userDtoService = userDtoService;
-    }
 
     @GetMapping("admin/autoDtos")
     public String showAutoList(Model model) {

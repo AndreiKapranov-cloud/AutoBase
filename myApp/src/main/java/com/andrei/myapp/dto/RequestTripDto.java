@@ -9,9 +9,8 @@ public class RequestTripDto {
     private Long tripId;
     private int distanceKm;
     private String tripStatus;
-    private int fuelLitres;
     private String orders;
     private String autoBase;
-    private String dispatcher ;
+    private String dispatcher;
     private String driver;
 }

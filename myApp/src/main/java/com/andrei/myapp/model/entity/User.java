@@ -33,6 +33,8 @@ public class User {
     private String secondName;
     @Column(name = "status")
     private UserEnum userStatus;
+    @Column
+    private String login;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "user_auto",
             joinColumns =

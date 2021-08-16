@@ -18,7 +18,7 @@ public interface AutoDtoService {
 
     List<AutoDto>getAutosByMaxVolumeM3After(int maxVolumeM3);
 
-    List<AutoDto>getAutosByTechnicalInspection(String technicalInspection);
+    List<AutoDto>getAutosByTechnicalInspection(Boolean technicalInspection);
 
     Auto save(RequestAutoDto requestAutoDto);
 }

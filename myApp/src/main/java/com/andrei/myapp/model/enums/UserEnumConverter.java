@@ -9,11 +9,11 @@ import java.util.stream.Stream;
 public class UserEnumConverter implements AttributeConverter<UserEnum, String> {
 
     @Override
-    public String convertToDatabaseColumn(UserEnum userEnum) {
-        if (userEnum == null) {
+    public String convertToDatabaseColumn(UserEnum status) {
+        if (status == null) {
             return null;
         }
-        return userEnum.getCode();
+        return status.getCode();
     }
 
 

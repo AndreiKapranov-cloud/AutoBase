@@ -29,7 +29,6 @@ public class TripToRequestTripDtoMapperImpl {
         requestTripDto.setTripId(trip.getTripId());
         requestTripDto.setDistanceKm(trip.getDistanceKm());
         requestTripDto.setTripStatus(tripEnumConverter.convertToDatabaseColumn(trip.getTripStatus()));
-        requestTripDto.setFuelLitres(trip.getFuelLitres());
         requestTripDto.setOrders(String.valueOf((trip.getOrders()).getOrderId()));
         requestTripDto.setAutoBase(String.valueOf((trip.getAutoBase()).getAutoBaseId()));
         requestTripDto.setDispatcher(String.valueOf((trip.getDispatcher()).getUserId()));
@@ -42,7 +41,6 @@ public class TripToRequestTripDtoMapperImpl {
         trip.setTripId(requestTripDto.getTripId());
         trip.setDistanceKm(requestTripDto.getDistanceKm());
         trip.setTripStatus(tripEnumConverter.convertToEntityAttribute(requestTripDto.getTripStatus()));
-        trip.setFuelLitres(requestTripDto.getFuelLitres());
         trip.setAutoBase(autoBaseService.getAutoBaseByAutoBaseId(Long.valueOf(requestTripDto.getAutoBase())));
         trip.setOrders(orderService.getOrdersByOrderId(Long.valueOf(requestTripDto.getOrders())));
         trip.setDispatcher(userService.getUserById(Long.valueOf(requestTripDto.getDispatcher())));

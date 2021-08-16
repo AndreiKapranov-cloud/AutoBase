@@ -18,6 +18,6 @@ public interface AutoDao extends JpaRepository<Auto, Long> {
 
     List<Auto> getAutosByMaxVolumeM3After(int maxVolumeM3);
 
-    List<Auto> getAutosByTechnicalInspection(String technicalInspection);
+    List<Auto> getAutosByTechnicalInspection(Boolean technicalInspection);
 
 }

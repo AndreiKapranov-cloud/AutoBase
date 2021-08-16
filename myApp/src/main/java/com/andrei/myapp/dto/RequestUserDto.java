@@ -15,6 +15,7 @@ public class RequestUserDto {
     private String createDate;
     private String secondName;
     private String userStatus;
+    private String login;
     private String role;
     private String auto;
     private List<TripDto> dispatchersTrips;
