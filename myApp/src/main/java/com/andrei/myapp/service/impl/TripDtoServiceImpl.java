@@ -13,8 +13,8 @@ import com.andrei.myapp.service.interfaces.OrderDtoService;
 import com.andrei.myapp.service.interfaces.TripDtoService;
 import com.andrei.myapp.service.interfaces.UserDtoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,9 +48,9 @@ public class TripDtoServiceImpl implements TripDtoService {
 
     @Override
     public String tripDispatcherHelper() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        UserDto dispatcherr = userDtoService.getUserByLogin(login);
+     //   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+     //   String login = auth.getName();
+        UserDto dispatcherr = userDtoService.getUserByLogin("1");
         return String.valueOf(dispatcherr.getUserId());
     }
 
@@ -78,16 +78,15 @@ public class TripDtoServiceImpl implements TripDtoService {
 
     @Override
     @Transactional
-    public Trip save(RequestTripDto requestTripDto) {
-        Trip trip = tripToRequestTripDtoMapperImpl.requestTripDtoToTrip(requestTripDto);
+    public Trip save(TripDto tripDto) {
+        Trip trip = mapper.tripDtoToTrip(tripDto);
         return dao.save(trip);
     }
 
     @Override
-    public RequestTripDto getTripByTripId(Long tripId) {
+    public TripDto getTripByTripId(Long tripId) {
         Trip trip = dao.getTripByTripId(tripId);
-        RequestTripDto requestTripDto = tripToRequestTripDtoMapperImpl.tripToRequestTripDto(trip);
-        return requestTripDto;
+        return mapper.tripToTripDto(trip);
     }
 
     @Override

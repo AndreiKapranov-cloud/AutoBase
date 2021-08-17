@@ -1,4 +1,4 @@
-package com.andrei.myapp.security;
+/*package com.andrei.myapp.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -12,5 +12,5 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
             System.out.println(encodedPassword);
         }
 
-    }
+    }*/
 

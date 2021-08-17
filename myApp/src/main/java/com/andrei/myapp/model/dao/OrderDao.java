@@ -10,5 +10,7 @@ import java.util.List;
 public interface OrderDao extends JpaRepository<Orders, Long> {
     Orders getOrdersByOrderId(Long orderId);
 
+    Orders getOrdersByWeight(int weight);
+
     List<Orders> findOrdersByOrderId(Long orderId);
 }

@@ -82,6 +82,6 @@ public class UserController {
 
     @GetMapping("/admin/google")
     public String showGoogleForm(Model model) {
-        return "google";
+        return "google1";
     }
 }

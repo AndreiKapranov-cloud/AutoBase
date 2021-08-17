@@ -26,7 +26,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public synchronized Orders save(Orders orders) {
+    public Orders getOrdersByWeight(int weight) {
+        Orders orders = dao.getOrdersByWeight(weight);
+        return orders;
+    }
+
+    @Override
+    public Orders save(Orders orders) {
         return dao.save(orders);
     }
 

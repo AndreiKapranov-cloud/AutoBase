@@ -8,4 +8,5 @@ import java.util.List;
 public interface AutoService {
     List<Auto> getAll();
     Auto getAutoByAutoId(Long autoId);
+    Auto getAutoByNumber(String number);
 }

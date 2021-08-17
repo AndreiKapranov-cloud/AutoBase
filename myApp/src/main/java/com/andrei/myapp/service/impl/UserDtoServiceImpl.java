@@ -15,7 +15,7 @@ import com.andrei.myapp.service.interfaces.RoleDtoService;
 import com.andrei.myapp.service.interfaces.UserDtoService;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +31,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class UserDtoServiceImpl implements UserDtoService {
-    private final PasswordEncoder passwordEncoder;
+  //  private final PasswordEncoder passwordEncoder;
     private final RoleDtoService roleDtoService;
     private final UserDao dao;
     private final ToUserDtoMapper mapper;
@@ -83,7 +83,7 @@ public class UserDtoServiceImpl implements UserDtoService {
             throw new EmailExistsException("There is an account with that email address:"
                     + requestUserDto.getUserEmail());
         }*/
-        User user = userToRequestUserDtoMapper.RequestUserDtoToUser(requestUserDto);
+       User user = userToRequestUserDtoMapper.RequestUserDtoToUser(requestUserDto);
         //   user.setPassword(passwordEncoder.encode(requestUserDto.getPassword()));
         return dao.save(user);
     }

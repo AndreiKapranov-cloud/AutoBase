@@ -9,5 +9,7 @@ public interface OrderService {
 
     Orders getOrdersByOrderId(Long orderId);
 
+    Orders getOrdersByWeight(int weight);
+
     Orders save(Orders order);
 }

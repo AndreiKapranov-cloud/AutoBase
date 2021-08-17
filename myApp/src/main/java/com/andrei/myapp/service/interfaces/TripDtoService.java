@@ -17,11 +17,11 @@ public interface TripDtoService {
 
     String tripOrderHelper(Long orderId);
 
-    Trip save(RequestTripDto requestTripDto);
+    Trip save(TripDto TripDto);
 
     List<UserDto> tripDriversHelper(Long orderId);
 
-    RequestTripDto getTripByTripId(Long TripId);
+    TripDto getTripByTripId(Long TripId);
 
     List<TripDto> getTripsByDriver(User driver);
 

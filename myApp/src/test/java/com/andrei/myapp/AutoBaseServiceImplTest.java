@@ -1,14 +1,12 @@
 package com.andrei.myapp;
 
 import com.andrei.myapp.dto.AutoBaseDto;
-import com.andrei.myapp.dto.TripDto;
 import com.andrei.myapp.model.dao.AutoBaseDao;
 import com.andrei.myapp.model.entity.AutoBase;
 import com.andrei.myapp.service.interfaces.AutoBaseDtoService;
+import com.andrei.myapp.service.interfaces.AutoBaseService;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AutoBaseDtoServiceImplTest {
+public class AutoBaseServiceImplTest {
     @Autowired
-    AutoBaseDtoService autoBaseDtoService;
+    AutoBaseService autoBaseService;
     @MockBean
     AutoBaseDao autoBaseDao;
     private final Long id = 1L;
@@ -43,15 +37,15 @@ public class AutoBaseDtoServiceImplTest {
 
     @org.junit.Test
     public void getAutoBaseByIdTest() {
-        AutoBaseDto autoBaseDto = autoBaseDtoService.getAutoBaseByAutoBaseId(id);
-        Assertions.assertNotEquals(null, autoBaseDto);
+        AutoBase autoBase=autoBaseService.getAutoBaseByAutoBaseId(id);
+        Assertions.assertNotEquals(null,autoBase);
     }
-
     @org.junit.Test
     public void getAutoBaseByAddressOfOrganizationTest() {
-        AutoBaseDto autoBaseDto = autoBaseDtoService.getAutoBaseByNameOfOrganization(nameOfOrganization);
-        Assertions.assertNotEquals(null, autoBaseDto);
+        AutoBase autoBase=autoBaseService.getAutoBaseByNameOfOrganization(nameOfOrganization);
+        Assertions.assertNotEquals(null,autoBase);
     }
 
 }
+
 

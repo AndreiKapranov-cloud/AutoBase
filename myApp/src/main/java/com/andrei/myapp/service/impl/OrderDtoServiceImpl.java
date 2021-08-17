@@ -28,7 +28,11 @@ public class OrderDtoServiceImpl implements OrderDtoService {
         });
         return ordersDtos;
     }
-
+    @Override
+    public OrdersDto getOrdersByWeight(int weight) {
+        Orders orders = dao.getOrdersByWeight(weight);
+        return mapper.ordersToOrdersDto(orders);
+    }
     @Override
     public OrdersDto getOrdersByOrderId(Long orderId) {
         Orders orders = dao.getOrdersByOrderId(orderId);

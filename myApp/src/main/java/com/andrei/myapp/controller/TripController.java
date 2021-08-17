@@ -8,8 +8,8 @@ import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.model.enums.UserEnum;
 import com.andrei.myapp.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,9 +41,9 @@ public class TripController {
 
     @GetMapping("/driver/tripDtos")
     public String showDriversTripList(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User driver = userService.getUserByLogin(login);
+    //    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    //    String login = auth.getName();
+        User driver = userService.getUserByLogin("1");
         List<TripDto> tripDtos = tripDtoService.getTripsByDriver(driver);
         model.addAttribute("tripDtos", tripDtos);
         return "tripDtos";
@@ -57,9 +57,9 @@ public class TripController {
 
     @GetMapping("/dispatcher/tripDtos")
     public String showDispatchersTripList(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String login = auth.getName();
-        User dispatcher = userService.getUserByLogin(login);
+      //  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+     //   String login = auth.getName();
+        User dispatcher = userService.getUserByLogin("1");
         List<TripDto> tripDtos = tripDtoService.getTripsByDispatcher(dispatcher);
         model.addAttribute("tripDtos", tripDtos);
         return "tripDtos";
@@ -125,8 +125,8 @@ public class TripController {
     }
 
     @PostMapping("dispatcher/requestTripDto/save")
-    public String saveDispRequestTripDto(RequestTripDto requestTripDto) throws Exception {
-        tripDtoService.save(requestTripDto);
+    public String saveDispRequestTripDto(TripDto tripDto) throws Exception {
+        tripDtoService.save(tripDto);
         return "redirect:/dispatcher";
     }
 
@@ -138,15 +138,15 @@ public class TripController {
     }
 
     @PostMapping("admin/requestTripDto/save")
-    public String saveRequestTripDto(RequestTripDto requestTripDto) {
-        tripDtoService.save(requestTripDto);
+    public String saveRequestTripDto(TripDto tripDto) {
+        tripDtoService.save(tripDto);
         return "redirect:/";
     }
 
 
     @PostMapping("driver/requestTripDto/save")
-    public String saveDriversRequestTripDto(RequestTripDto requestTripDto) {
-        tripDtoService.save(requestTripDto);
+    public String saveDriversRequestTripDto(TripDto tripDto) {
+        tripDtoService.save(tripDto);
         return "redirect:/driver";
     }
 
@@ -167,8 +167,8 @@ public class TripController {
         List<OrdersDto> ordersDtos = orderDtoService.getAll();
         List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
         List<UserDto> dispatchers = userDtoService.getUsersByRoleRolEnum(RolEnum.DISPATCHER);
-        RequestTripDto requestTripDto = tripDtoService.getTripByTripId(tripId);
-        model.addAttribute("requestTripDto", requestTripDto);
+        TripDto tripDto = tripDtoService.getTripByTripId(tripId);
+        model.addAttribute("tripDto", tripDto);
         model.addAttribute("ordersDtos", ordersDtos);
         model.addAttribute("autoBaseDtos", autoBaseDtos);
         model.addAttribute("drivers", drivers);
