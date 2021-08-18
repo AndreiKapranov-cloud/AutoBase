@@ -2,6 +2,7 @@ package com.andrei.myapp.controller;
 
 import com.andrei.myapp.dto.*;
 import com.andrei.myapp.model.enums.UserEnum;
+import com.andrei.myapp.model.enums.UserEnumConverter;
 import com.andrei.myapp.service.interfaces.AutoBaseDtoService;
 import com.andrei.myapp.service.interfaces.AutoDtoService;
 import com.andrei.myapp.service.interfaces.RoleDtoService;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -29,8 +32,7 @@ public class UserController {
 
     @GetMapping("admin/userDtos")
     public String showUserList(Model model) {
-        List<UserDto> userDtos = userDtoService.getAll();
-        //  List<UserDto> userDtos = userDtoService.getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThan(UserEnum.READY,6);
+       List<UserDto>userDtos = userDtoService.getAll();
         model.addAttribute("userDtos", userDtos);
         return "userDtos";
     }
@@ -40,9 +42,22 @@ public class UserController {
     public String showAddUserForm(Model model) {
         List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
         List<RoleDto> roleDtos = roleDtoService.getAll();
+        List<AutoDto> autoDtos = autoDtoService.getAll();
+        UserEnumConverter userEnumConverter = new UserEnumConverter();
+        String ill = userEnumConverter.convertToDatabaseColumn(UserEnum.ILL);
+        String ready = userEnumConverter.convertToDatabaseColumn(UserEnum.READY);
+        String onacargorun = userEnumConverter.convertToDatabaseColumn(UserEnum.ONACARGORUN);
+        String deleted = userEnumConverter.convertToDatabaseColumn(UserEnum.DELETED);
+       /* List<String> enumValues = new ArrayList<>();
+     enumValues.add(ill);
+      enumValues.add(onacargorun);
+      enumValues.add(ready);
+      enumValues.add(deleted);
+        model.addAttribute("userStatuses",enumValues);*/
         model.addAttribute("autoBaseDtos", autoBaseDtos);
         model.addAttribute("roleDtos", roleDtos);
-        model.addAttribute("userDto", new UserDto());
+        model.addAttribute("requestUserDto", new RequestUserDto());
+        model.addAttribute("autoDtos", autoDtos);
         return "userDto_form";
     }
 
@@ -54,10 +69,10 @@ public class UserController {
 
     @GetMapping("/admin/userDtos/edit/{userId}")
     public String showEditUserForm(@PathVariable("userId") Long userId, Model model) {
-        UserDto userDto = userDtoService.getUserById(userId);
+        RequestUserDto requestUserDto = userDtoService.getUserById(userId);
         List<RoleDto> roleDtos = roleDtoService.getAll();
         List<AutoDto> autoDtos = autoDtoService.getAutosByTechnicalInspection(true);
-        model.addAttribute("userDto", userDto);
+        model.addAttribute("requestUserDto", requestUserDto);
         model.addAttribute("roleDtos", roleDtos);
         model.addAttribute("autoDtos", autoDtos);
         return "userDto_form";

@@ -1,7 +1,7 @@
 package com.andrei.myapp.security;
 
 
-/*import com.andrei.myapp.model.entity.User;
+import com.andrei.myapp.model.entity.User;
 import com.andrei.myapp.model.enums.RolEnum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -57,4 +57,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .permitAll();
     }
-}*/
+}

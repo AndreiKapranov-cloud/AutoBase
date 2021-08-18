@@ -24,7 +24,7 @@ public class Auto {
     private int maxVolumeM3;
     @Column(name = "technical_inspection", nullable = false)
     private Boolean technicalInspection;
-    @OneToOne(mappedBy = "auto")
+    @OneToOne(mappedBy = "auto",cascade = CascadeType.ALL, orphanRemoval = true)
     private User driver;
 
 }

@@ -17,9 +17,11 @@ public interface TripDtoService {
 
     String tripOrderHelper(Long orderId);
 
-    Trip save(TripDto TripDto);
+    Trip save(RequestTripDto requestTripDto);
 
     List<UserDto> tripDriversHelper(Long orderId);
+
+    RequestTripDto getRequestTripDtoByTripId(Long TripId);
 
     TripDto getTripByTripId(Long TripId);
 

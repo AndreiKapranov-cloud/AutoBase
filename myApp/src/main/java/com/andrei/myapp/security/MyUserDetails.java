@@ -1,4 +1,4 @@
-/*package com.andrei.myapp.security;
+package com.andrei.myapp.security;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -53,6 +53,6 @@ public class MyUserDetails implements UserDetails {
         return true;
     }
 
-}*/
+}
 
 

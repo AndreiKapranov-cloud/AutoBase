@@ -14,6 +14,7 @@ public class UserToRequestUserDtoMapperImpl {
     private final RoleService roleService;
     private final AutoService autoService;
     UserEnumConverter userEnumConverter = new UserEnumConverter();
+
     public UserToRequestUserDtoMapperImpl(RoleService roleService, AutoService autoService) {
         this.roleService = roleService;
         this.autoService = autoService;
@@ -29,8 +30,11 @@ public class UserToRequestUserDtoMapperImpl {
         requestUserDto.setSecondName(user.getSecondName());
         requestUserDto.setLogin(user.getLogin());
         requestUserDto.setUserStatus(userEnumConverter.convertToDatabaseColumn(user.getUserStatus()));
-        requestUserDto.setRole(String.valueOf((user.getRole()).getRoleId()));
-        requestUserDto.setAuto(String.valueOf((user.getAuto()).getAutoId()));
+        requestUserDto.setRole(((user.getRole()).getRolEnum()).getCode());
+        if (user.getAuto() == null) {
+            requestUserDto.setAuto(null);
+        }
+        requestUserDto.setAuto(String.valueOf((user.getAuto().getAutoId())));
         return requestUserDto;
     }
 
@@ -45,6 +49,9 @@ public class UserToRequestUserDtoMapperImpl {
         user.setLogin(requestUserDto.getLogin());
         user.setUserStatus(userEnumConverter.convertToEntityAttribute(requestUserDto.getUserStatus()));
         user.setRole(roleService.getRoleByRoleId(Long.valueOf(requestUserDto.getRole())));
+        if (requestUserDto.getAuto() == null) {
+            user.setAuto(null);
+        }
         user.setAuto(autoService.getAutoByAutoId(Long.valueOf(requestUserDto.getAuto())));
         return user;
     }

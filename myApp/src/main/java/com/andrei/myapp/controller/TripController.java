@@ -3,6 +3,7 @@ package com.andrei.myapp.controller;
 import com.andrei.myapp.dto.*;
 import com.andrei.myapp.google.GetDistanceMatrixApi;
 import com.andrei.myapp.mapper.TripToRequestTripDtoMapperImpl;
+import com.andrei.myapp.model.entity.Trip;
 import com.andrei.myapp.model.entity.User;
 import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.model.enums.UserEnum;
@@ -10,6 +11,8 @@ import com.andrei.myapp.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,9 +44,9 @@ public class TripController {
 
     @GetMapping("/driver/tripDtos")
     public String showDriversTripList(Model model) {
-    //    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    //    String login = auth.getName();
-        User driver = userService.getUserByLogin("1");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+        User driver = userService.getUserByLogin(login);
         List<TripDto> tripDtos = tripDtoService.getTripsByDriver(driver);
         model.addAttribute("tripDtos", tripDtos);
         return "tripDtos";
@@ -51,15 +54,24 @@ public class TripController {
 
     @GetMapping("/dispatcher/tripDtos/edit/{tripId}")
     public String showEditDispatchersTripForm(@PathVariable("tripId") Long tripId, Model model) {
-        duplicationReducer(tripId, model);
+        List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
+        List<OrdersDto> ordersDtos = orderDtoService.getAll();
+        List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
+        List<UserDto> dispatchers = userDtoService.getUsersByRoleRolEnum(RolEnum.DISPATCHER);
+        RequestTripDto requestTripDto = tripDtoService.getRequestTripDtoByTripId(tripId);
+        model.addAttribute("requestTripDto", requestTripDto);
+        model.addAttribute("ordersDtos", ordersDtos);
+        model.addAttribute("autoBaseDtos", autoBaseDtos);
+        model.addAttribute("drivers", drivers);
+        model.addAttribute("dispatchers", dispatchers);
         return "dispatcherTripDto_form";
     }
 
     @GetMapping("/dispatcher/tripDtos")
     public String showDispatchersTripList(Model model) {
-      //  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-     //   String login = auth.getName();
-        User dispatcher = userService.getUserByLogin("1");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String login = auth.getName();
+        User dispatcher = userService.getUserByLogin(login);
         List<TripDto> tripDtos = tripDtoService.getTripsByDispatcher(dispatcher);
         model.addAttribute("tripDtos", tripDtos);
         return "tripDtos";
@@ -83,11 +95,11 @@ public class TripController {
         List<OrdersDto> ordersDtos = orderDtoService.getAll();
         List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
         List<UserDto> dispatchers = userDtoService.getUsersByRoleRolEnum(RolEnum.DISPATCHER);
-        model.addAttribute("requestTripDto", new RequestTripDto());
         model.addAttribute("ordersDtos", ordersDtos);
         model.addAttribute("autoBaseDtos", autoBaseDtos);
         model.addAttribute("drivers", drivers);
         model.addAttribute("dispatchers", dispatchers);
+        model.addAttribute("requestTripDto", new RequestTripDto());
     }
 
     @GetMapping("admin/requestTripDtoByOrder/new/{orderId}")
@@ -125,28 +137,22 @@ public class TripController {
     }
 
     @PostMapping("dispatcher/requestTripDto/save")
-    public String saveDispRequestTripDto(TripDto tripDto) throws Exception {
-        tripDtoService.save(tripDto);
+    public String saveDispRequestTripDto(RequestTripDto requestTripDto) throws Exception {
+        tripDtoService.save(requestTripDto);
         return "redirect:/dispatcher";
     }
 
-    @GetMapping("dispatcher/requestTripDto/new")
-    public String showAddDispatcherTripForm(Model model) {
-        duplicationEater(model);
-        return "dispatcherTripDto_form";
-
-    }
 
     @PostMapping("admin/requestTripDto/save")
-    public String saveRequestTripDto(TripDto tripDto) {
-        tripDtoService.save(tripDto);
+    public String saveRequestTripDto(RequestTripDto requestTripDto) {
+        tripDtoService.save(requestTripDto);
         return "redirect:/";
     }
 
 
     @PostMapping("driver/requestTripDto/save")
-    public String saveDriversRequestTripDto(TripDto tripDto) {
-        tripDtoService.save(tripDto);
+    public String saveDriversRequestTripDto(RequestTripDto requestTripDto) {
+        tripDtoService.save(requestTripDto);
         return "redirect:/driver";
     }
 

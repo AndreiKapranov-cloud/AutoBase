@@ -1,5 +1,6 @@
 package com.andrei.myapp;
 
+import com.andrei.myapp.dto.RequestUserDto;
 import com.andrei.myapp.dto.UserDto;
 import com.andrei.myapp.model.dao.UserDao;
 import com.andrei.myapp.model.entity.User;
@@ -33,8 +34,8 @@ public class UserDtoServiceImplTest {
     }
     @org.junit.Test
     public void getUserByUserIdTest(){
-        UserDto userDto = userDtoService.getUserById(id);
-        Assertions.assertNotEquals(null,userDto);
+        RequestUserDto requestUserDto = userDtoService.getUserById(id);
+        Assertions.assertNotEquals(null,requestUserDto);
     }
     @org.junit.Test
     public void getUserByUserNameTest(){

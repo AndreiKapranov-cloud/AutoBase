@@ -1,4 +1,4 @@
-/*package com.andrei.myapp.security;
+package com.andrei.myapp.security;
 
 import com.andrei.myapp.model.dao.UserDao;
 import com.andrei.myapp.model.entity.User;
@@ -19,4 +19,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         return new MyUserDetails(user);
     }
-}*/
+}

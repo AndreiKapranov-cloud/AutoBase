@@ -35,7 +35,7 @@ public class User {
     private UserEnum userStatus;
     @Column
     private String login;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinTable(name = "user_auto",
             joinColumns =
                     { @JoinColumn(name = "user_id", referencedColumnName = "user_id") },

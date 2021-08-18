@@ -24,7 +24,7 @@ public interface UserDtoService {
 
     User saveWhenEdit(RequestUserDto requestUserDto);
 
-    UserDto getUserById(Long userId);
+    RequestUserDto getUserById(Long userId);
 
     List<UserDto> getUsersByRoleEquals(Role role);
 

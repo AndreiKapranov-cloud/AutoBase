@@ -16,6 +16,7 @@ import com.andrei.myapp.service.interfaces.UserDtoService;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class UserDtoServiceImpl implements UserDtoService {
-  //  private final PasswordEncoder passwordEncoder;
+   private final PasswordEncoder passwordEncoder;
     private final RoleDtoService roleDtoService;
     private final UserDao dao;
     private final ToUserDtoMapper mapper;
@@ -54,7 +55,7 @@ public class UserDtoServiceImpl implements UserDtoService {
         List<User> users = dao.findAll();
         List<UserDto> userDtos = new ArrayList<>();
         users.forEach(user -> {
-            UserDto userDto = mapper.userToUserDto(user);
+            UserDto userDto =mapper.userToUserDto(user);
             userDtos.add(userDto);
         });
         return userDtos;
@@ -67,7 +68,7 @@ public class UserDtoServiceImpl implements UserDtoService {
     }
 
     @Transactional
-    public synchronized User saveWhenEdit(RequestUserDto requestUserDto) {
+    public  User saveWhenEdit(RequestUserDto requestUserDto) {
         User user = userToRequestUserDtoMapper.RequestUserDtoToUser(requestUserDto);
         return dao.save(user);
     }
@@ -84,7 +85,7 @@ public class UserDtoServiceImpl implements UserDtoService {
                     + requestUserDto.getUserEmail());
         }*/
        User user = userToRequestUserDtoMapper.RequestUserDtoToUser(requestUserDto);
-        //   user.setPassword(passwordEncoder.encode(requestUserDto.getPassword()));
+          user.setPassword(passwordEncoder.encode(requestUserDto.getPassword()));
         return dao.save(user);
     }
 
@@ -97,9 +98,9 @@ public class UserDtoServiceImpl implements UserDtoService {
     }
 
     @Override
-    public UserDto getUserById(Long userId) {
+    public RequestUserDto getUserById(Long userId) {
         User user = dao.getUserByUserId(userId);
-        return mapper.userToUserDto(user);
+        return userToRequestUserDtoMapper.userToRequestUserDto(user);
     }
 
     @Override
