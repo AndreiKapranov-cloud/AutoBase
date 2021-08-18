@@ -156,8 +156,11 @@
                 <input type="text" th:field="*{login}"/></h1>
         </div>
         <div class="field">
-            <h1><label>Status:  </label>
-                <input type="text" th:field="*{userStatus}"/></h1>
+            <h1><label>Status </label>
+                <select name="userStatus">
+                    <option th:each="userStatus : ${T(com.andrei.myapp.model.enums.UserEnum).values()}"
+                            th:value="${userStatus.getCode}" th:text="${userStatus}"></option>
+                </select></h1>
         </div>
        <!-- <div class="field">
             <h1><label>Status: </label>

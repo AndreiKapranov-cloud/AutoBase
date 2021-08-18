@@ -173,8 +173,8 @@ public class TripController {
         List<OrdersDto> ordersDtos = orderDtoService.getAll();
         List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
         List<UserDto> dispatchers = userDtoService.getUsersByRoleRolEnum(RolEnum.DISPATCHER);
-        TripDto tripDto = tripDtoService.getTripByTripId(tripId);
-        model.addAttribute("tripDto", tripDto);
+        RequestTripDto requestTripDto =tripDtoService.getRequestTripDtoByTripId(tripId);
+        model.addAttribute("requestTripDto", requestTripDto);
         model.addAttribute("ordersDtos", ordersDtos);
         model.addAttribute("autoBaseDtos", autoBaseDtos);
         model.addAttribute("drivers", drivers);
