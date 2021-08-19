@@ -1,31 +1,39 @@
-package com.andrei.myapp.controller;
+package com.andrei.myapp;
 
 import com.andrei.myapp.dto.AutoBaseDto;
+import com.andrei.myapp.model.entity.AutoBase;
 import com.andrei.myapp.service.impl.AutoBaseDtoServiceImpl;
+import com.andrei.myapp.service.interfaces.AutoBaseDtoService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest
 public class AutoBaseControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
+    @Autowired
+    private ObjectMapper objectMapper;
     @MockBean
-    private AutoBaseDtoServiceImpl autoBaseDtoServiceImpl;
+    private AutoBaseDtoService autoBaseDtoService;
     private List<AutoBaseDto> autoBaseList;
 
-    @BeforeEach
+   /* @BeforeEach
     void setUp() {
         this.autoBaseList = new ArrayList<>();
         AutoBaseDto autoBase1 = new AutoBaseDto();
@@ -40,15 +48,50 @@ public class AutoBaseControllerTest {
         autoBaseList.add(autoBase1);
         autoBaseList.add(autoBase2);
         autoBaseList.add(autoBase3);
-    }
+    }*/
 
     @Test
-    public void shouldFetchAllAutoBases() throws Exception {
-        given(autoBaseDtoServiceImpl.getAll()).willReturn(autoBaseList);
-        this.mockMvc.perform(get("admin/autoBaseDtos"))
-                .andExpect(status().isOk());
+    public void givenAutoBase_whenAdd_thenStatus201andPersonReturned() throws Exception {
 
+        AutoBase autoBase = new AutoBase();
+        Mockito.when(autoBaseDtoService.save(Mockito.any())).thenReturn(autoBase);
+
+        mockMvc.perform(
+                post("/admin/autoBaseDto/save")
+                        .content(objectMapper.writeValueAsString(autoBase))
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isCreated())
+                .andExpect(content().json(objectMapper.writeValueAsString(autoBase)));
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /*   @Test
+
+        public void shouldFetchAllAutoBases () throws Exception {
+            given(autoBaseDtoServiceImpl.getAll()).willReturn(autoBaseList);
+            this.mockMvc
+
+                    .perform(MockMvcRequestBuilders.get("admin/autoBaseDtos"))
+                    .andExpect(status().isOk())
+                    .andExpect(model().attributeExists("autoBaseDtos"));
+
+        }
+    }*/
 
 
 
@@ -113,4 +156,4 @@ public class AutoBaseControllerTest {
 
     }*/
 
-}
+

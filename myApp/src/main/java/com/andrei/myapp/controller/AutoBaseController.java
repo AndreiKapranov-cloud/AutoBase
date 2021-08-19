@@ -33,7 +33,7 @@ public class AutoBaseController {
     }
 
     @PostMapping("admin/autoBaseDto/save")
-    public String saveUserDto(AutoBaseDto autoBaseDto) {
+    public String saveAutoBaseDto(AutoBaseDto autoBaseDto) {
         autoBaseDtoService.save(autoBaseDto);
         return "redirect:/";
     }

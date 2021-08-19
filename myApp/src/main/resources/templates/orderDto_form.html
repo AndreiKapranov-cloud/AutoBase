@@ -133,10 +133,13 @@
         <div class="field">
             <h1><label>Delivery Address: </label>
                 <input type="text" th:field="*{deliveryAddress}"/></h1>
-        </div>
+       </div>
         <div class="field">
-            <h1><label>Status</label>
-                <input type="text" th:field="*{orderStatus}"/></h1>
+            <h1><label>Status: </label>
+                <select name="orderStatus">
+                    <option th:each="orderStatus : ${T(com.andrei.myapp.model.enums.OrderEnum).values()}"
+                            th:value="${orderStatus}" th:text="${orderStatus}"></option>
+                </select></h1>
         </div>
         <div class="field">
             <h1><label>VolumeM3</label>
