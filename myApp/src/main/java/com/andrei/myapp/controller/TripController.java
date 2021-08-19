@@ -11,6 +11,8 @@ import com.andrei.myapp.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +27,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class TripController {
+    Logger logger = LoggerFactory.getLogger(TripController.class);
     private final UserService userService;
     private final UserDtoService userDtoService;
     private final AutoBaseDtoService autoBaseDtoService;
@@ -79,9 +82,28 @@ public class TripController {
     }
 
     @GetMapping("/driver/tripDtos/edit/{tripId}")
-    public String showEditDriversTripForm(@PathVariable("tripId") Long tripId, Model model) {
-        duplicationReducer(tripId, model);
-        return "driverTripDto_form";
+    public String showEditDriversTripForm(@PathVariable("tripId") Long tripId, Model model)throws Exception {
+        RequestTripDto requestTripDto = tripDtoService.getRequestTripDtoByTripId(tripId);
+        Long orderId=Long.valueOf(requestTripDto.getOrders());
+        List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
+        String dispatcher = tripDtoService.tripDispatcherHelper();
+        String orders = String.valueOf(orderId);
+        List<UserDto> drivers = tripDtoService.tripDriversHelper(orderId);
+        String tripStatus = "waiting";
+        OrdersDto ordersDto = orderDtoService.getOrdersByOrderId(orderId);
+        String deliveryAddress = ordersDto.getDeliveryAddress();
+        String start=(ordersDto.getAutoBase()).getAddress();
+        long distanceKm = tripDtoService.tripGetDistanceKm(orderId);
+        model.addAttribute("requestTripDto", requestTripDto);
+        model.addAttribute("tripStatus", tripStatus);
+        model.addAttribute("dispatcher", dispatcher);
+        model.addAttribute("start", start);
+        model.addAttribute("deliveryAddress", deliveryAddress);
+        model.addAttribute("distanceKm", distanceKm);
+        model.addAttribute("orders", orders);
+        model.addAttribute("autoBaseDtos", autoBaseDtos);
+        model.addAttribute("drivers", drivers);
+        return "tripDtoByOrderDriver_form";
     }
 
     @GetMapping("admin/requestTripDto/new")
@@ -103,21 +125,7 @@ public class TripController {
         model.addAttribute("requestTripDto", new RequestTripDto());
     }
 
-    @GetMapping("admin/requestTripDtoByOrder/new/{orderId}")
-    public String showAddTripByOrderForm(@PathVariable("orderId") Long orderId, Model model) {
-        List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
-        OrdersDto ordersDto = orderDtoService.getOrdersByOrderId(orderId);
-        List<UserDto> drivers = userDtoService.
-                getUsersByUserStatusAndAuto_CarryingCapacityIsGreaterThanAndAuto_maxVolumeM3IsGreaterThan
-                        (UserEnum.READY, ordersDto.getWeight(), ordersDto.getVolumeM3());
-        List<UserDto> dispatchers = userDtoService.getUsersByRoleRolEnum(RolEnum.DISPATCHER);
-        model.addAttribute("requestTripDto", new RequestTripDto());
-        model.addAttribute("ordersDtos", ordersDto);
-        model.addAttribute("autoBaseDtos", autoBaseDtos);
-        model.addAttribute("drivers", drivers);
-        model.addAttribute("dispatchers", dispatchers);
-        return "tripDtoByOrder_form";
-    }
+
 
     @GetMapping("dispatcher/requestTripDtoByOrder/new/{orderId}")
     public String showAddTripByOrdersForm(@PathVariable("orderId") Long orderId, Model model) throws Exception {
@@ -126,13 +134,15 @@ public class TripController {
         String orders = String.valueOf(orderId);
         List<UserDto> drivers = tripDtoService.tripDriversHelper(orderId);
         String tripStatus = "waiting";
-        OrdersDto ordersDto=orderDtoService.getOrdersByOrderId(orderId);
-        String deliveryAddress=ordersDto.getDeliveryAddress();
+        OrdersDto ordersDto = orderDtoService.getOrdersByOrderId(orderId);
+        String deliveryAddress = ordersDto.getDeliveryAddress();
+        String start=(ordersDto.getAutoBase()).getAddress();
         long distanceKm = tripDtoService.tripGetDistanceKm(orderId);
         model.addAttribute("requestTripDto", new RequestTripDto());
         model.addAttribute("tripStatus", tripStatus);
         model.addAttribute("dispatcher", dispatcher);
-        model.addAttribute("deliveryAddress",deliveryAddress);
+        model.addAttribute("start", start);
+        model.addAttribute("deliveryAddress", deliveryAddress);
         model.addAttribute("distanceKm", distanceKm);
         model.addAttribute("orders", orders);
         model.addAttribute("autoBaseDtos", autoBaseDtos);
@@ -140,8 +150,10 @@ public class TripController {
         return "tripDtoByOrder_form";
     }
 
+
     @PostMapping("dispatcher/requestTripDto/save")
     public String saveDispRequestTripDto(RequestTripDto requestTripDto) throws Exception {
+        logger.info("Saving tripDto");
         tripDtoService.save(requestTripDto);
         return "redirect:/dispatcher";
     }
@@ -149,6 +161,7 @@ public class TripController {
 
     @PostMapping("admin/requestTripDto/save")
     public String saveRequestTripDto(RequestTripDto requestTripDto) {
+        logger.info("Saving tripDto");
         tripDtoService.save(requestTripDto);
         return "redirect:/";
     }
@@ -156,6 +169,7 @@ public class TripController {
 
     @PostMapping("driver/requestTripDto/save")
     public String saveDriversRequestTripDto(RequestTripDto requestTripDto) {
+        logger.info("Saving tripDto");
         tripDtoService.save(requestTripDto);
         return "redirect:/driver";
     }
@@ -177,7 +191,7 @@ public class TripController {
         List<OrdersDto> ordersDtos = orderDtoService.getAll();
         List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);
         List<UserDto> dispatchers = userDtoService.getUsersByRoleRolEnum(RolEnum.DISPATCHER);
-        RequestTripDto requestTripDto =tripDtoService.getRequestTripDtoByTripId(tripId);
+        RequestTripDto requestTripDto = tripDtoService.getRequestTripDtoByTripId(tripId);
         model.addAttribute("requestTripDto", requestTripDto);
         model.addAttribute("ordersDtos", ordersDtos);
         model.addAttribute("autoBaseDtos", autoBaseDtos);

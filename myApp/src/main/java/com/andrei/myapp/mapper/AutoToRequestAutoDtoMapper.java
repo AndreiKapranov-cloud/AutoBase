@@ -23,7 +23,10 @@ public class AutoToRequestAutoDtoMapper {
         auto.setMaxWeightWithCargoKg(requestAutoDto.getMaxWeightWithCargoKg());
         auto.setMaxVolumeM3(requestAutoDto.getMaxVolumeM3());
         auto.setTechnicalInspection(requestAutoDto.getTechnicalInspection());
-        auto.setDriver(userService.getUserById(Long.valueOf(requestAutoDto.getDriver())));
+        if(requestAutoDto.getAutoId()==null){
+            auto.setAutoId(null);
+        }else{
+        auto.setDriver(userService.getUserById(Long.valueOf(requestAutoDto.getDriver())));}
         return auto;
     }
 

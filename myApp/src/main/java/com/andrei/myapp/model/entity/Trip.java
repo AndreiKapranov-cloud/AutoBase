@@ -24,9 +24,6 @@ public class Trip {
     @JoinColumn(name = "order_id")
     private Orders orders;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "auto_base_id")
-    private AutoBase autoBase;
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dispatcher_id")
     private User dispatcher;
     @ManyToOne(cascade = CascadeType.ALL)

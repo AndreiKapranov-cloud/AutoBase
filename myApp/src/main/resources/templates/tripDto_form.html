@@ -129,14 +129,7 @@
                     </th:block>
                 </select></h1>
         </div>
-        <div class="field">
-            <h1><label>AutoBase: </label>
-                <select th:field="*{autoBase}">
-                    <th:block th:each="a : ${autoBaseDtos}">
-                        <option th:text="${a.nameOfOrganization}" th:value="${a.autoBaseId}"></option>
-                    </th:block>
-                </select></h1>
-        </div>
+
         <div class="field">
             <h1><label>Dispatcher: </label>
                 <select th:field="*{dispatcher}">

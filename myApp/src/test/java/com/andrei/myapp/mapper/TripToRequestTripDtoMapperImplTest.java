@@ -74,7 +74,6 @@ public class TripToRequestTripDtoMapperImplTest {
         requestTripDto.setDistanceKm(54);
         requestTripDto.setTripStatus("stopped");
         requestTripDto.setOrders("3");
-        requestTripDto.setAutoBase("2");
         requestTripDto.setDispatcher("1");
         requestTripDto.setDriver("2");
 
@@ -84,8 +83,6 @@ public class TripToRequestTripDtoMapperImplTest {
         assertEquals(requestTripDto.getDistanceKm(), trip.getDistanceKm());
         assertEquals(requestTripDto.getTripStatus(), tripEnumConverter.convertToDatabaseColumn(trip.getTripStatus()));
         assertEquals(orderService.getOrdersByOrderId(Long.valueOf(requestTripDto.getOrders())), trip.getOrders());
-        assertEquals(autoBaseService.getAutoBaseByAutoBaseId(Long.valueOf(requestTripDto.getAutoBase())),
-                trip.getAutoBase());
         assertEquals(userService.getUserById(Long.valueOf(requestTripDto.getDispatcher())), trip.getDispatcher());
         assertEquals(userService.getUserById(Long.valueOf(requestTripDto.getDriver())), trip.getDriver());
     }
@@ -98,7 +95,6 @@ public class TripToRequestTripDtoMapperImplTest {
         trip.setDistanceKm(25);
         trip.setTripStatus(TripEnum.WAITING);
         trip.setOrders(orderService.getOrdersByOrderId(orderId));
-        trip.setAutoBase(autoBaseService.getAutoBaseByAutoBaseId(autoBaseId));
         trip.setDispatcher(userService.getUserById(dispatcherId));
         trip.setDriver(userService.getUserById(driverId));
 
@@ -106,8 +102,6 @@ public class TripToRequestTripDtoMapperImplTest {
         assertEquals(trip.getDistanceKm(), requestTripDto.getDistanceKm());
         assertEquals(trip.getTripStatus(), tripEnumConverter.convertToEntityAttribute(requestTripDto.getTripStatus()));
         assertEquals(trip.getOrders(), orderService.getOrdersByOrderId(Long.valueOf(requestTripDto.getOrders())));
-        assertEquals(trip.getAutoBase(), autoBaseService.getAutoBaseByAutoBaseId(Long.valueOf(requestTripDto.
-                getAutoBase())));
         assertEquals(trip.getDispatcher(), userService.getUserById(Long.valueOf(requestTripDto.getDispatcher())));
         assertEquals(trip.getDriver(), userService.getUserById(Long.valueOf(requestTripDto.getDriver())));
     }

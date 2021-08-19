@@ -10,7 +10,6 @@ public class RequestTripDto {
     private int distanceKm;
     private String tripStatus;
     private String orders;
-    private String autoBase;
     private String dispatcher;
     private String driver;
 }

@@ -130,6 +130,7 @@
             opacity: 1;
             right: 10px;
         }
+
         button1 {
             border-radius: 4px;
             background-color: #5a4a5e;
@@ -145,7 +146,7 @@
             box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
         }
 
-        button1{
+        button1 {
             cursor: pointer;
             display: inline-block;
             position: relative;
@@ -214,56 +215,41 @@
 </form>
 
 
-<div class="container text-center"><tr>
-    <td><a th:href="@{admin/userDtos}">
-        <button
-        >The Last Of Users
-        </button>
-    </a></td>
-    <td><a th:href="@{admin/userDto/new}">
-        <button
-        >Add User
-        </button>
-    </a></td>
+<div class="container text-center">
+    <tr>
+        <td><a th:href="@{admin/userDtos}">
+            <button
+            >The Last Of Users
+            </button>
+        </a></td>
+        <td><a th:href="@{admin/userDto/new}">
+            <button
+            >Add User
+            </button>
+        </a></td>
 
 
-    <td><a th:href="@{admin/autoDtos}">
-        <button
-        >List of autos
-        </button>
-    </a></td>
+        <td><a th:href="@{admin/autoDtos}">
+            <button
+            >List of autos
+            </button>
+        </a></td>
 
 
-    <td><a th:href="@{admin/autoDto/new}">
-        <button
-        >Add Auto
-        </button>
-    </a></td>
-</tr></div>
-<div class="container text-center"><tr>
-    <td><a th:href="@{admin/orderDtos}">
-        <button
-        >List Of Orders
-        </button>
-    </a></td>
-
-    <td><a th:href="@{admin/orderDto/new}">
-        <button
-        >Add Order
-        </button>
-    </a></td>
-    <td><a th:href="@{admin/tripDtos}">
-        <button1
-        >List Of Trips
-        </button1>
-    </a></td>
-    <td><a th:href="@{admin/requestTripDto/new}">
-        <button
-        >Add Trip
-        </button>
-    </a></td></div>
-<div class="container text-center"></tr>
-    <tr class="container text-center">
+        <td><a th:href="@{admin/autoDto/new}">
+            <button
+            >Add Auto
+            </button>
+        </a></td>
+        <td><a th:href="@{admin/orderDtos}">
+            <button
+            >List Of Orders
+            </button>
+        </a></td>
+    </tr>
+</div>
+<div class="container text-center">
+    <tr>
         <td><a th:href="@{admin/autoBaseDtos}">
             <button
             >List Of AutoBases
@@ -274,12 +260,15 @@
             >Add AutoBase
             </button>
         </a></td>
-        <td><a th:href="@{admin/google}">
-            <button
-            >Google
-            </button>
+        <td><a th:href="@{admin/tripDtos}">
+            <button1
+            >List Of Trips
+            </button1>
         </a></td>
-    </tr></div>
+
+    </tr>
+</div>
+
 
 <footer>
     <a>Copyright Andrei Kapranov</a>

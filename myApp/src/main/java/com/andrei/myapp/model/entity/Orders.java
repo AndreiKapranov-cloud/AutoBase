@@ -30,6 +30,9 @@ public class Orders {
     private List<Trip> trips;
     @Column(name = "status")
     private OrderEnum orderStatus;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "auto_base_id")
+    private AutoBase autoBase;
 
 
 }

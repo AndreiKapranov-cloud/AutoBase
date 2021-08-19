@@ -9,7 +9,6 @@ public class TripDto {
     private Long tripId;
     private int distanceKm;
     private String tripStatus;
-    private AutoBaseDto autoBase;
     private OrdersDto orders;
     private UserDto dispatcher ;
     private UserDto driver;

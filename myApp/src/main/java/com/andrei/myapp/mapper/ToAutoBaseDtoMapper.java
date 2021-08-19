@@ -7,8 +7,8 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface ToAutoBaseDtoMapper {
-    @Mapping(target = "trips", ignore = true)
+    @Mapping(target = "orders", ignore = true)
     AutoBaseDto autoBaseToAutoBaseDto(AutoBase autoBase);
-    @Mapping(target = "trips", ignore = true)
+    @Mapping(target = "orders", ignore = true)
     AutoBase autoBaseDtoToAutoBase(AutoBaseDto autoBaseDto);
 }

@@ -23,7 +23,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-
+    Logger logger = LoggerFactory.getLogger(UserController.class);
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
     private final UserDtoService userDtoService;
     private final AutoBaseDtoService autoBaseDtoService;
@@ -43,17 +43,6 @@ public class UserController {
         List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
         List<RoleDto> roleDtos = roleDtoService.getAll();
         List<AutoDto> autoDtos = autoDtoService.getAll();
-        UserEnumConverter userEnumConverter = new UserEnumConverter();
-        String ill = userEnumConverter.convertToDatabaseColumn(UserEnum.ILL);
-        String ready = userEnumConverter.convertToDatabaseColumn(UserEnum.READY);
-        String onacargorun = userEnumConverter.convertToDatabaseColumn(UserEnum.ONACARGORUN);
-        String deleted = userEnumConverter.convertToDatabaseColumn(UserEnum.DELETED);
-       /* List<String> enumValues = new ArrayList<>();
-     enumValues.add(ill);
-      enumValues.add(onacargorun);
-      enumValues.add(ready);
-      enumValues.add(deleted);
-        model.addAttribute("userStatuses",enumValues);*/
         model.addAttribute("autoBaseDtos", autoBaseDtos);
         model.addAttribute("roleDtos", roleDtos);
         model.addAttribute("requestUserDto", new RequestUserDto());
@@ -63,6 +52,7 @@ public class UserController {
 
     @PostMapping("/admin/userDto/save")
     public String saveUserDto(RequestUserDto requestUserDto) {
+        logger.info("Saving requestUserDto");
         userDtoService.save(requestUserDto);
         return "redirect:/";
     }
@@ -81,6 +71,7 @@ public class UserController {
 
     @PostMapping("admin/userDto/saveWhenEdit")
     public String saveWhenEditUserDto(RequestUserDto requestUserDto) {
+        logger.info("Saving requestUserDto");
         userDtoService.saveWhenEdit(requestUserDto);
         return "redirect:/";
     }
@@ -95,8 +86,5 @@ public class UserController {
         return "driver";
     }
 
-    @GetMapping("/admin/google")
-    public String showGoogleForm(Model model) {
-        return "google1";
-    }
+
 }

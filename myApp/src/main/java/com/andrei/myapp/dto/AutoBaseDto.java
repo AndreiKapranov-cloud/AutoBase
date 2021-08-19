@@ -1,5 +1,6 @@
 package com.andrei.myapp.dto;
 
+import com.andrei.myapp.model.entity.Orders;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,6 @@ public class AutoBaseDto {
     private Long autoBaseId;
     private String address;
     private String nameOfOrganization;
-    private List<TripDto> trips;
+    private List<Orders>orders;
 
 }

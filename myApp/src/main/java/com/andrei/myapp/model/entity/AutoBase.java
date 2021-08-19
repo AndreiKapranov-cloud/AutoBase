@@ -19,5 +19,5 @@ public class AutoBase {
     @Column(name = "name_of_organization",nullable = false)
     private String nameOfOrganization;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "autoBase", cascade = CascadeType.ALL)
-    private List<Trip> trips;
+    private List<Orders>orders;
 }

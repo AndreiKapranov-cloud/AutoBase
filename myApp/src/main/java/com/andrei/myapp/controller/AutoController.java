@@ -8,6 +8,8 @@ import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.service.interfaces.AutoDtoService;
 import com.andrei.myapp.service.interfaces.UserDtoService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class AutoController {
+    Logger logger = LoggerFactory.getLogger(AutoController.class);
     private final AutoDtoService autoDtoService;
     private final UserDtoService userDtoService;
 
@@ -39,6 +42,7 @@ public class AutoController {
 
     @PostMapping("admin/autoDto/save")
     public String saveAuto(RequestAutoDto requestAutoDto) {
+        logger.info("Saving requestAutoDto");
         autoDtoService.save(requestAutoDto);
         return "redirect:/";
     }
@@ -48,7 +52,7 @@ public class AutoController {
         AutoDto autoDto = autoDtoService.getAutoByAutoId(autoId);
         List<UserDto> drivers = userDtoService.getUsersByRoleRolEnum(RolEnum.DRIVER);;
         model.addAttribute("drivers",drivers);
-        model.addAttribute("autoDto", autoDto);
+        model.addAttribute("autoDto",autoDto);
         return "autoDto_form";
 
     }

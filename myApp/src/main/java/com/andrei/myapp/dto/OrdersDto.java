@@ -1,5 +1,6 @@
 package com.andrei.myapp.dto;
 
+import com.andrei.myapp.model.entity.AutoBase;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,5 +17,6 @@ public class OrdersDto {
     private String orderStatus;
     private String deliveryAddress;
     private List<TripDto> trips;
+    private AutoBase autoBase;
 
 }

@@ -6,6 +6,8 @@ import com.andrei.myapp.dto.RoleDto;
 import com.andrei.myapp.dto.UserDto;
 import com.andrei.myapp.service.interfaces.AutoBaseDtoService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class AutoBaseController {
+    Logger logger = LoggerFactory.getLogger(AutoBaseController.class);
     private final AutoBaseDtoService autoBaseDtoService;
     @GetMapping("admin/autoBaseDtos")
     public String showAutoBaseList(Model model) {
@@ -34,6 +37,7 @@ public class AutoBaseController {
 
     @PostMapping("admin/autoBaseDto/save")
     public String saveAutoBaseDto(AutoBaseDto autoBaseDto) {
+        logger.info("Saving autoBaseDto");
         autoBaseDtoService.save(autoBaseDto);
         return "redirect:/";
     }

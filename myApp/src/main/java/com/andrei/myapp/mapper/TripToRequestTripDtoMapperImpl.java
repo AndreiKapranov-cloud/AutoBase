@@ -30,7 +30,6 @@ public class TripToRequestTripDtoMapperImpl {
         requestTripDto.setDistanceKm(trip.getDistanceKm());
         requestTripDto.setTripStatus(tripEnumConverter.convertToDatabaseColumn(trip.getTripStatus()));
         requestTripDto.setOrders(String.valueOf((trip.getOrders()).getOrderId()));
-        requestTripDto.setAutoBase(String.valueOf((trip.getAutoBase()).getAutoBaseId()));
         requestTripDto.setDispatcher(String.valueOf((trip.getDispatcher()).getUserId()));
         requestTripDto.setDriver(String.valueOf((trip.getDriver()).getUserId()));
         return requestTripDto;
@@ -41,9 +40,9 @@ public class TripToRequestTripDtoMapperImpl {
         trip.setTripId(requestTripDto.getTripId());
         trip.setDistanceKm(requestTripDto.getDistanceKm());
         trip.setTripStatus(tripEnumConverter.convertToEntityAttribute(requestTripDto.getTripStatus()));
-        trip.setAutoBase(autoBaseService.getAutoBaseByAutoBaseId(Long.valueOf(requestTripDto.getAutoBase())));
         trip.setOrders(orderService.getOrdersByOrderId(Long.valueOf(requestTripDto.getOrders())));
         trip.setDispatcher(userService.getUserById(Long.valueOf(requestTripDto.getDispatcher())));
+        if(requestTripDto.getDriver()==null){trip.setDriver(null);}
         trip.setDriver(userService.getUserById(Long.valueOf(requestTripDto.getDriver())));
         return trip;
     }

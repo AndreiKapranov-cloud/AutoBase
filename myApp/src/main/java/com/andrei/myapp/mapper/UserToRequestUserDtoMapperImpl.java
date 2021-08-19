@@ -2,6 +2,7 @@ package com.andrei.myapp.mapper;
 
 import com.andrei.myapp.dto.RequestUserDto;
 import com.andrei.myapp.model.entity.User;
+import com.andrei.myapp.model.enums.RolEnum;
 import com.andrei.myapp.model.enums.UserEnumConverter;
 import com.andrei.myapp.service.interfaces.AutoService;
 import com.andrei.myapp.service.interfaces.RoleService;
@@ -33,8 +34,8 @@ public class UserToRequestUserDtoMapperImpl {
         requestUserDto.setRole(((user.getRole()).getRolEnum()).getCode());
         if (user.getAuto() == null) {
             requestUserDto.setAuto(null);
-        }
-        requestUserDto.setAuto(String.valueOf((user.getAuto().getAutoId())));
+        }else{
+        requestUserDto.setAuto(String.valueOf((user.getAuto().getAutoId())));}
         return requestUserDto;
     }
 
@@ -49,10 +50,11 @@ public class UserToRequestUserDtoMapperImpl {
         user.setLogin(requestUserDto.getLogin());
         user.setUserStatus(userEnumConverter.convertToEntityAttribute(requestUserDto.getUserStatus()));
         user.setRole(roleService.getRoleByRoleId(Long.valueOf(requestUserDto.getRole())));
-        if (requestUserDto.getAuto() == null) {
+        if ((requestUserDto.getAuto() == null)||(user.getRole()).getRolEnum()== RolEnum.DISPATCHER||
+                (user.getRole()).getRolEnum()== RolEnum.ADMIN) {
             user.setAuto(null);
-        }
-        user.setAuto(autoService.getAutoByAutoId(Long.valueOf(requestUserDto.getAuto())));
+        }else{
+        user.setAuto(autoService.getAutoByAutoId(Long.valueOf(requestUserDto.getAuto())));}
         return user;
     }
 }
