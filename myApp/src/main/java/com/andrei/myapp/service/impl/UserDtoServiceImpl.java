@@ -102,6 +102,11 @@ public class UserDtoServiceImpl implements UserDtoService {
         User user = dao.getUserByUserId(userId);
         return userToRequestUserDtoMapper.userToRequestUserDto(user);
     }
+    @Override
+    public UserDto getDriver(Long userId){
+        User user=dao.getUserByUserId(userId);
+        return mapper.userToUserDto(user);
+    }
 
     @Override
     public List<UserDto> getUsersByRoleEquals(Role role) {

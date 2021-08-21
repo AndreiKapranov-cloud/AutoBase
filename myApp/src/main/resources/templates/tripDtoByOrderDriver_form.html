@@ -171,7 +171,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 <div class="container text-center">
     <h1><h6>Trip</h6></h1>
 </div>
-<form th:action="@{/dispatcher/requestTripDto/save}" th:object="${requestTripDto}" method="post">
+<form th:action="@{/driver/requestTripDto/save}" th:object="${requestTripDto}" method="post">
     <input type="hidden" th:field="*{tripId}"/>
     <div class="main">
         <!-- <div class="field">
@@ -191,8 +191,15 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                 <input type="text" id="dispatcher" name="dispatcher" th:value="${dispatcher}" readonly></h1>
         </div>
         <div class="field">
-            <h1> <label for="tripStatus">Status: </label>
-                <input type="text" id="tripStatus" name="tripStatus" th:value="${tripStatus}" readonly></h1>
+            <h1> <label for="driver">Driver: </label>
+                <input type="text" id="driver" name="driver" th:value="${driver}" readonly></h1>
+        </div>
+        <div class="field">
+            <h1><label>Status: </label>
+                <select name="tripStatus">
+                    <option th:each="tripStatus : ${T(com.andrei.myapp.model.enums.TripEnum).values()}"
+                            th:value="${tripStatus.getCode}" th:text="${tripStatus}"></option>
+                </select></h1>
         </div>
         <!-- <div class="field">
              <h1><label for="dispatcher">Dispatcher: </label>

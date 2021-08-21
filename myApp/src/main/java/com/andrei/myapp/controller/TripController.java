@@ -82,9 +82,11 @@ public class TripController {
     }
 
     @GetMapping("/driver/tripDtos/edit/{tripId}")
-    public String showEditDriversTripForm(@PathVariable("tripId") Long tripId, Model model)throws Exception {
+    public String showEditDriversTripForm(@PathVariable("tripId") Long tripId, Model model) throws Exception {
         RequestTripDto requestTripDto = tripDtoService.getRequestTripDtoByTripId(tripId);
-        Long orderId=Long.valueOf(requestTripDto.getOrders());
+        UserDto driver1 = userDtoService.getDriver(Long.valueOf(requestTripDto.getDriver()));
+        String driver = String.valueOf(driver1.getUserId());
+        Long orderId = Long.valueOf(requestTripDto.getOrders());
         List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
         String dispatcher = tripDtoService.tripDispatcherHelper();
         String orders = String.valueOf(orderId);
@@ -92,7 +94,7 @@ public class TripController {
         String tripStatus = "waiting";
         OrdersDto ordersDto = orderDtoService.getOrdersByOrderId(orderId);
         String deliveryAddress = ordersDto.getDeliveryAddress();
-        String start=(ordersDto.getAutoBase()).getAddress();
+        String start = (ordersDto.getAutoBase()).getAddress();
         long distanceKm = tripDtoService.tripGetDistanceKm(orderId);
         model.addAttribute("requestTripDto", requestTripDto);
         model.addAttribute("tripStatus", tripStatus);
@@ -103,6 +105,7 @@ public class TripController {
         model.addAttribute("orders", orders);
         model.addAttribute("autoBaseDtos", autoBaseDtos);
         model.addAttribute("drivers", drivers);
+        model.addAttribute("driver", driver);
         return "tripDtoByOrderDriver_form";
     }
 
@@ -126,7 +129,6 @@ public class TripController {
     }
 
 
-
     @GetMapping("dispatcher/requestTripDtoByOrder/new/{orderId}")
     public String showAddTripByOrdersForm(@PathVariable("orderId") Long orderId, Model model) throws Exception {
         List<AutoBaseDto> autoBaseDtos = autoBaseDtoService.getAll();
@@ -136,7 +138,7 @@ public class TripController {
         String tripStatus = "waiting";
         OrdersDto ordersDto = orderDtoService.getOrdersByOrderId(orderId);
         String deliveryAddress = ordersDto.getDeliveryAddress();
-        String start=(ordersDto.getAutoBase()).getAddress();
+        String start = (ordersDto.getAutoBase()).getAddress();
         long distanceKm = tripDtoService.tripGetDistanceKm(orderId);
         model.addAttribute("requestTripDto", new RequestTripDto());
         model.addAttribute("tripStatus", tripStatus);

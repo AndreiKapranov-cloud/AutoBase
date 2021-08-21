@@ -15,7 +15,7 @@ public interface UserDtoService {
     UserDto getUserByUsername(String userName);
 
     List<UserDto> getAll();
-
+    UserDto getDriver(Long userId);
     UserDto getUserByLogin(String login);
 
     UserDto getUserByUserEmail(String userEmail);
