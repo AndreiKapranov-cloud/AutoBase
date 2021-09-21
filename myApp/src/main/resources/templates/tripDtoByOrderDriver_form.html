@@ -174,10 +174,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 <form th:action="@{/driver/requestTripDto/save}" th:object="${requestTripDto}" method="post">
     <input type="hidden" th:field="*{tripId}"/>
     <div class="main">
-        <!-- <div class="field">
-             <h1><label for="distanceKm">Distance:</label>
-                 <input type="text" id="distanceKm" th:value="${distanceKm}" readonly></h1>
-         </div>-->
+
         <div class="field">
             <h1> <label for="distanceKm">Distance:</label>
                 <input type="text" id="distanceKm" name="distanceKm" th:value="${distanceKm}" readonly></h1>
@@ -201,42 +198,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
                             th:value="${tripStatus.getCode}" th:text="${tripStatus}"></option>
                 </select></h1>
         </div>
-        <!-- <div class="field">
-             <h1><label for="dispatcher">Dispatcher: </label>
-                 <input type="text" id="dispatcher" th:value="${dispatcher}" readonly></h1>
-         </div>-->
-
-
-        <!--  <div class="field">
-              <h1><label>Order: </label>
-                  <select th:field="*{orders}">
-                      <th:block th:each="a : ${ordersDtos}">
-                          <option th:text="${a.deliveryAddress}" th:value="${a.orderId}"></option>
-                      </th:block>
-                  </select></h1>
-          </div>-->
-        <!-- <div class="field">
-             <h1><label>Order: </label>
-                 <select th:field="*{orders}">
-                     <th:block th:each="a : ${ordersDtos}">
-                         <option th:text="${a.termOfDelivery}" th:value="${a.orderId}"></option>
-                     </th:block>
-                 </select></h1>
-         </div>-->
-        <!-- <div class="field">
-             <h1><label>Dispatcher: </label>
-                 <select th:field="*{dispatcher}">
-                     <th:block th:each="a : ${dispatchers}">
-                         <option th:text="${a.secondName}" th:value="${a.userId}"></option>
-                     </th:block>
-                 </select></h1>-->
-        <!--  <div class="field">
-              <h1><label>Status: </label>
-                  <select name="tripStatus">
-                      <option th:each="tripStatus : ${T(com.andrei.myapp.model.enums.TripEnum).values()}"
-                              th:value="${tripStatus.getCode}" th:text="${tripStatus}"></option>
-                  </select></h1>
-          </div>-->
 
         <div class="field">
             <h1><label>Status </label>

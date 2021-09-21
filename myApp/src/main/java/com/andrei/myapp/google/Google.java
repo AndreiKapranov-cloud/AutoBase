@@ -15,10 +15,10 @@ public class Google {
         return appProperties;
     }
 
-    public long getGoogle(String source,String destination) throws Exception {
+   /* public long getGoogle(String source,String destination) throws Exception {
         GetDistanceMatrixApi getDistanceMatrixApi = new GetDistanceMatrixApi(getAppProperties());
         source = "Minsk";
         destination ="Grodno";
         return getDistanceMatrixApi.getData(source, destination);
-    }
+    }*/
 }
